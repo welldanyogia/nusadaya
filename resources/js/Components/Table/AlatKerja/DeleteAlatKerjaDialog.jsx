@@ -9,7 +9,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/Components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/Components/ui/button"
 import { useForm } from '@inertiajs/react'
 
 export function DeleteAlatKerjaDialog({ data }) {
