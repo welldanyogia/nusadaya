@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->uuid('id')->primary(); // Use UUID for primary key
-            $table->unsignedBigInteger('tenaga_kerja_id');
+            $table->uuid('tenaga_kerja_id');
             $table->string('file_name');
             $table->string('file_path');
             $table->timestamps();
