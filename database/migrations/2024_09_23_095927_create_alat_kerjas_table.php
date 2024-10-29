@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('alat_kerjas', function (Blueprint $table) {
             $table->uuid('id')->primary();  // UUID for primary key
-            $table->unsignedBigInteger('project_id'); // Foreign key to projects
+            $table->uuid('project_id');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+
             $table->string('nama_alat');  // Tool name
             $table->date('tgl_kontrak');  // Contract date for alat kerja
             $table->integer('masa_pakai');  // Usage period in months
