@@ -1,4 +1,3 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout.jsx";
 import {Card, CardContent, CardHeader} from "@/Components/ui/card.jsx";

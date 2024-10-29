@@ -1,4 +1,4 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+
 import {Head} from '@inertiajs/react';
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout.jsx";
 import Table from "@/Components/Table/AlatKerja/Table.jsx";

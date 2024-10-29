@@ -1,4 +1,3 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import {Head, router} from '@inertiajs/react';
 import AuthenticatedAdmin from "@/Layouts/AuthenticatedAdminLayout.jsx";
 import {SquareChartGantt, User, Users, Wrench} from 'lucide-react';
