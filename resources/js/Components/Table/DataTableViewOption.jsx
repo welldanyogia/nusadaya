@@ -12,7 +12,7 @@ import {
 } from "@/Components/ui/dropdown-menu";
 
 export function DataTableViewOptions({ table }) {
-    console.log(table.getAllColumns())
+    // console.log(table.getAllColumns())
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

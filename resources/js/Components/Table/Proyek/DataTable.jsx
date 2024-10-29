@@ -106,7 +106,7 @@ export function DataTable({columns, data,category}) {
     };
 
     const generatePDF = (data) => {
-        console.log(data); // Memeriksa data yang diterima
+        // console.log(data); // Memeriksa data yang diterima
         const doc = new jsPDF({ orientation: "landscape" });
 
         const columns = [

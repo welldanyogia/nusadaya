@@ -21,7 +21,9 @@ createInertiaApp({
             return
         }
 
-        hydrateRoot(el, <App {...props} />);
+        hydrateRoot(el, <BrowserRouter>
+            <App {...props} />
+        </BrowserRouter>);
     },
     progress: {
         color: '#57b5c6',

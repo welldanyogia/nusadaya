@@ -41,7 +41,7 @@ export function LoginForm() {
 
     const handleSubmit = (data) => {
         // Handle form submission
-        console.log("submit : ",data)
+        // console.log("submit : ",data)
         // post(route('login'), {
         //     onFinish: () => reset('password'),
         // });

@@ -4,7 +4,6 @@ import {Card, CardContent, CardHeader} from "@/Components/ui/card.jsx";
 import {Badge} from "@/Components/ui/badge.jsx";
 
 export default function DetailAlatKerja({tool, auth}) {
-    console.log(tool)
     return (
         <AuthenticatedAdmin
             user={auth.user}

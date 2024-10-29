@@ -6,7 +6,7 @@ import {Image} from "lucide-react";
 import {Card, CardContent} from "@/Components/ui/card.jsx";
 
 export default function Dashboard({auth, employees, projects}) {
-    console.log(employees)
+    // console.log(employees)
     return (
         <AuthenticatedAdmin
             user={auth.user}
