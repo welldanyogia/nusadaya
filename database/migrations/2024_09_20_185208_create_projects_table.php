@@ -12,7 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+//            $table->id();
+            $table->uuid('id')->primary();
 //            $table->string('category');
             $table->string('nama_pekerjaan');
 //            $table->json('alat_kerja')->nullable(true); // Store alat_kerja as JSON
