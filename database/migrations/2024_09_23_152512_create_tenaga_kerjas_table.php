@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('tenaga_kerjas', function (Blueprint $table) {
             $table->uuid('id')->primary();  // UUID for id
-            $table->foreignUuid('project_id')->constrained()->onDelete('cascade'); // UUID relation to projects
+            $table->uuid('project_id'); // Ensure this is defined as uuid
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+
             $table->string('unit_pln');
             $table->string('penempatan');
             $table->string('no_spk');
