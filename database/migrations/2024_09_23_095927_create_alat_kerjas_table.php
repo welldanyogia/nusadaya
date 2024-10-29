@@ -23,8 +23,6 @@ return new class extends Migration
             $table->integer('sisa_masa_pakai');  // Remaining usage period
             $table->text('keterangan')->nullable();  // Additional notes
             $table->timestamps();
-
-            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 
