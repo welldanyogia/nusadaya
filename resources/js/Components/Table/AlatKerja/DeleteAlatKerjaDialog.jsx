@@ -16,14 +16,14 @@ export function DeleteAlatKerjaDialog({ data }) {
     const { delete: destroy, processing } = useForm()
 
     const handleDelete = () => {
-        console.log("data",data)
+        // console.log("data",data)
         destroy(route('alatkerja.destroy', data.original.id), {
             preserveScroll: true,
             onSuccess: () => {
                 // Anda dapat menambahkan logika khusus di sini jika diperlukan, seperti menampilkan notifikasi toast
             },
             onError: (errors) => {
-                console.error(errors)
+                // console.error(errors)
             },
         })
     }
@@ -31,7 +31,7 @@ export function DeleteAlatKerjaDialog({ data }) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button variant="destructive" onClick={() => console.log("data:", data.original)}>
+                <Button variant="destructive" >
                     Hapus
                 </Button>
             </AlertDialogTrigger>

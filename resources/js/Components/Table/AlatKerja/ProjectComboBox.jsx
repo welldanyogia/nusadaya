@@ -25,9 +25,9 @@ export function ProjectComboBox({ projects,project_id,onProjectChange }) {
     const [inputValue, setInputValue] = React.useState("")
     const [loading, setLoading] = React.useState(false) // Loading state
 
-    console.log("projects",projects)
-    console.log("value",value)
-    console.log("nama",projects.find((cat) => cat.id === parseInt(value))?.nama_pekerjaan)
+    // console.log("projects",projects)
+    // console.log("value",value)
+    // console.log("nama",projects.find((cat) => cat.id === parseInt(value))?.nama_pekerjaan)
     // Handler untuk memilih proyek dan menyimpan project_id
     const handleSelectProject = (selectedProject) => {
         setValue(selectedProject.id);  // Simpan nama pekerjaan

@@ -7,6 +7,7 @@ use App\Models\AlatKerja;
 use App\Models\Project;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class AlatKerjaController extends Controller
@@ -82,33 +83,49 @@ class AlatKerjaController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data yang diterima
-        $validatedData = $request->validate([
-            'nama_alat' => 'required|string|max:255',
-            'project_id' => 'required|integer|exists:projects,id',
-            'tgl_kontrak' => 'required|date',
-            'masa_pakai' => 'required|integer',
-            'masa_pakai_saat_ini' => 'nullable|integer',
-            'sisa_masa_pakai' => 'nullable|integer',
-            'keterangan' => 'nullable|string|max:255',
-        ]);
+        // Initial debug message
+//        Log::info('Store method triggered in AlatKerjaController.');
 
         try {
-            // Hitung tgl_akhir_kontrak berdasarkan tgl_kontrak + masa_pakai (dalam satuan bulan misalnya)
+            // Log incoming request data
+//            Log::info('Request data:', $request->all());
+
+            // Validate the request data
+            $validatedData = $request->validate([
+                'nama_alat' => 'required|string|max:255',
+                'project_id' => 'required|exists:projects,id',
+                'tgl_kontrak' => 'required|date',
+                'masa_pakai' => 'required|integer',
+                'masa_pakai_saat_ini' => 'nullable|integer',
+                'sisa_masa_pakai' => 'nullable|integer',
+                'keterangan' => 'nullable|string|max:255',
+            ]);
+
+            // Log validated data
+//            Log::info('Validated data:', $validatedData);
+
+            // Calculate tgl_akhir_kontrak
             $tgl_akhir_kontrak = Carbon::parse($validatedData['tgl_kontrak'])
                 ->addMonths((int)$validatedData['masa_pakai']);
 
-            // Tambahkan tgl_akhir_kontrak ke data yang akan disimpan
+            // Log the calculated contract end date
+//            Log::info('Calculated tgl_akhir_kontrak:', ['tgl_akhir_kontrak' => $tgl_akhir_kontrak]);
+
+            // Add tgl_akhir_kontrak to validated data
             $validatedData['tgl_akhir_kontrak'] = $tgl_akhir_kontrak;
 
-            // Buat instance AlatKerja baru dan isi dengan data yang sudah divalidasi
+            // Create a new AlatKerja instance
             AlatKerja::create($validatedData);
 
-            // Redirect atau kembalikan respon
+            // Log success message
+//            Log::info('AlatKerja created successfully with data:', $validatedData);
+
             return redirect()->back()->with('success', 'Data alat kerja berhasil ditambahkan');
         } catch (\Exception $e) {
-            // Tangani error
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat menambahkan data');
+            // Log any exceptions
+//            Log::error('Error in storing AlatKerja data: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menambahkan data : ' . $e->getMessage());
         }
     }
 

@@ -149,7 +149,7 @@ export function EditAlatKerjaDialog({data,projects}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        console.log("form data:",formData)
+        // console.log("form data:",formData)
 
         setLoading(true);
 
@@ -160,9 +160,9 @@ export function EditAlatKerjaDialog({data,projects}) {
                     setOpen(false);
                 },
             });
-            console.log('Data alat kerja berhasil diperbarui');
+            // console.log('Data alat kerja berhasil diperbarui');
         } catch (error) {
-            console.error('Error updating project:', error.response?.data || error.message);
+            // console.error('Error updating project:', error.response?.data || error.message);
         }
     };
 
@@ -171,7 +171,7 @@ export function EditAlatKerjaDialog({data,projects}) {
             <DialogTrigger asChild>
                 <Button variant="outline"
                         onClick={()=>{
-                            console.log("edit data :",formData)
+                            // console.log("edit data :",formData)
                         }}
                         className={"bg-fountain-blue-400 text-white rounded-xl"}>Edit</Button>
             </DialogTrigger>

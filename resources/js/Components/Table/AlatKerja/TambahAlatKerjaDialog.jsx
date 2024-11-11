@@ -66,8 +66,8 @@ export function TambahAlatKerjaDialog({projects}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        console.log("form data:", formData);
 
+        // console.log("Submitting form with data:", formData); // Log form data before submission
         setLoading(true);
 
         try {
@@ -75,13 +75,16 @@ export function TambahAlatKerjaDialog({projects}) {
                 onFinish: () => {
                     setLoading(false);
                     setOpen(false);
+                    console.log("Form submission finished"); // Confirm form submission is complete
                 },
             });
-            console.log('Data alat kerja berhasil ditambahkan');
+            // console.log("Data alat kerja berhasil ditambahkan");
         } catch (error) {
-            console.error('Error adding tool:', error.response?.data || error.message);
+            // console.error("Error adding tool:", error.response?.data || error.message);
+            alert("Error adding tool: " + (error.response?.data || error.message)); // Show error alert
         }
     };
+
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>

@@ -165,7 +165,6 @@ export function DataTable({columns, data,projects}) {
                                             data-state={row.getIsSelected() && "selected"}
                                             onClick={() => {
                                                 router.get(`/admin/monitoring/alat-kerja/${row.original.id}`)
-                                                console.log(row.original.id)
                                             }}
                                             className={`${hoverColor(keterangan)}`} // Apply hover color dynamically
                                         >
