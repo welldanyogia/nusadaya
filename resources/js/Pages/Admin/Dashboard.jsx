@@ -11,7 +11,7 @@ function formatDate(dateString) {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return new Intl.DateTimeFormat('id-ID', options).format(new Date(dateString));
 }
-export default function Dashboard({auth,projects, total_project,category,total_tenagakerja}) {
+export default function DashboardProyek({auth,projects, total_project,category,total_tenagakerja}) {
     const formattedProjects = projects.map(project => ({
         ...project,
         tanggal_efektif_kontrak: formatDate(project.tanggal_efektif_kontrak),
@@ -23,9 +23,9 @@ export default function Dashboard({auth,projects, total_project,category,total_t
     return (
         <AuthenticatedAdmin
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">DashboardProyek</h2>}
         >
-            <Head title="Dashboard"/>
+            <Head title="DashboardProyek"/>
 
             <div className="py-12 space-y-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex gap-4 max-lg:grid">

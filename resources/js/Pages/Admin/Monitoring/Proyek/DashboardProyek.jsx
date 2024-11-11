@@ -14,7 +14,7 @@ function formatDate(dateString) {
     return new Intl.DateTimeFormat('id-ID', options).format(new Date(dateString));
 }
 
-export default function Dashboard({ auth,projects,projects_by_category,category,flash }) {
+export default function DashboardProyek({ auth,projects,projects_by_category,category,flash }) {
     const formattedProjects = projects.map(project => ({
         ...project,
         tanggal_efektif_kontrak: formatDate(project.tanggal_efektif_kontrak),
@@ -55,9 +55,9 @@ export default function Dashboard({ auth,projects,projects_by_category,category,
     return (
         <AuthenticatedAdmin
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">DashboardProyek</h2>}
         >
-            <Head title="Dashboard" />
+            <Head title="DashboardProyek" />
 
             <div className="py-12">
                 {showSuccess && (

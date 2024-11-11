@@ -79,7 +79,7 @@ class ProyekController extends Controller
             ];
         })->values();
 
-        return Inertia::render('Admin/Monitoring/Proyek/Dashboard', [
+        return Inertia::render('Admin/Monitoring/Proyek/DashboardProyek', [
             'projects' => $projects,
             'total_project' => $total_project,
             'projects_by_category' => $projects_by_category,

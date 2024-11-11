@@ -5,14 +5,14 @@ import TableTK from "@/Components/Table/Proyek/DetailProyek/TenagaKerja/TableTK.
 import {Image} from "lucide-react";
 import {Card, CardContent} from "@/Components/ui/card.jsx";
 
-export default function Dashboard({auth, employees, projects}) {
+export default function DashboardProyek({auth, employees, projects}) {
     // console.log(employees)
     return (
         <AuthenticatedAdmin
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">DashboardProyek</h2>}
         >
-            <Head title="Dashboard"/>
+            <Head title="DashboardProyek"/>
 
             {/*<img src={"/bg-tenagakerja.png"} className={"w-full"} alt={"bg-tenagakerja"}/>*/}
             <div className="py-12">
