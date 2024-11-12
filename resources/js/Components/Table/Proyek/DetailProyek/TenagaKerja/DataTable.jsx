@@ -145,11 +145,9 @@ export function DataTable({columns, data, projects}) {
                             {table.getRowModel().rows?.length ? (
                                 table.getRowModel().rows.map((row) => {
                                     // Cek apakah dokumen ada dan log hasilnya
-                                    console.log("Dokumen:", row.original.documents);
 
                                     // Pastikan data `documents` tersedia dan cek apakah panjangnya lebih dari 0
                                     const documentsAvailable = row.original.documents && row.original.documents.length > 0;
-                                    console.log("Documents Available:", documentsAvailable);
 
                                     return (
                                         <TableRow

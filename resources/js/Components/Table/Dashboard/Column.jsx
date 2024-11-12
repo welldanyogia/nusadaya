@@ -111,25 +111,50 @@ export const columns = [
     },
 
     {
-        accessorKey: "alat_kerja",
+        accessorKey: "alatkerja_summary",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Kondisi Alat Kerja" className={"w-[200px]"} />
         ),
         cell: ({ row }) => {
-            const kondisi = row.getValue("alat_kerja");
+            // Ambil data alatkerja_summary dari baris
+            const alatkerjaSummary = row.getValue("alatkerja_summary");
 
-            if (!kondisi) {
+            if (!alatkerjaSummary || alatkerjaSummary.length === 0) {
                 return null;
             }
 
+            // Inisialisasi jumlah default untuk setiap keterangan
+            const summary = {
+                kritis: 0,
+                normal: 0,
+                kronis: 0,
+            };
+
+            // Iterasi melalui alatkerjaSummary untuk menghitung jumlah berdasarkan keterangan
+            alatkerjaSummary.forEach(item => {
+                const lowerKeterangan = item.keterangan.toLowerCase();
+                if (summary.hasOwnProperty(lowerKeterangan)) {
+                    summary[lowerKeterangan] = item.count;
+                }
+            });
+
             return (
-                <div className="grid grid-cols-3 space-x-1">
-                    <Badge className="bg-red-500 text-white justify-center rounded-xl text-center">{kondisi.kritis}</Badge>
-                    <Badge className="bg-green-500 text-white justify-center rounded-xl text-center">{kondisi.normal}</Badge>
-                    <Badge className="bg-yellow-500 text-white justify-center rounded-xl text-center">{kondisi.kronis}</Badge>
+                <div className="grid grid-cols-3 gap-1">
+                    {/* Badge untuk Kritis */}
+                    <Badge className="bg-red-500 text-white justify-center rounded-xl text-center">
+                        {summary.kritis}
+                    </Badge>
+                    {/* Badge untuk Normal */}
+                    <Badge className="bg-green-500 text-white justify-center rounded-xl text-center">
+                        {summary.normal}
+                    </Badge>
+                    {/* Badge untuk Kronis */}
+                    <Badge className="bg-yellow-500 text-white justify-center rounded-xl text-center">
+                        {summary.kronis}
+                    </Badge>
                 </div>
             );
-        },
+        }
     },
     {
         accessorKey: "tanggal_efektif_kontrak",

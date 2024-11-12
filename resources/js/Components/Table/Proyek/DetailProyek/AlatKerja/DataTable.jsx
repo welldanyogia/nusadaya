@@ -35,7 +35,6 @@ import {TambahAlatKerjaDialog} from "@/Components/Table/Proyek/DetailProyek/Alat
 import {router} from "@inertiajs/react";
 
 export function DataTable({columns, data, project}) {
-    console.log("datatable proyek : ",project)
     const [rowSelection, setRowSelection] = useState({})
     const [columnVisibility, setColumnVisibility] = useState({})
     const [columnFilters, setColumnFilters] = useState([])
@@ -165,7 +164,6 @@ export function DataTable({columns, data, project}) {
                                             data-state={row.getIsSelected() && "selected"}
                                             onClick={() => {
                                                 router.get(`/admin/monitoring/alat-kerja/${row.original.id}`)
-                                                console.log(row.original.id)
                                             }}
                                             className={`${hoverColor(keterangan)}`} // Apply hover color dynamically
                                         >

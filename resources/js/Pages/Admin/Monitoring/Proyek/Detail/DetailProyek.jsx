@@ -10,8 +10,6 @@ import TableTK from "@/Components/Table/Proyek/DetailProyek/TenagaKerja/TableTK.
 export default function DetailProyek({auth, project, countKeterangan}) {
     const [selectedValue, setSelectedValue] = useState("alat-kerja");
 
-    console.log(countKeterangan['Normal'])
-    console.log(countKeterangan)
     const handleChange = (value) => {
         setSelectedValue(value);
     };
