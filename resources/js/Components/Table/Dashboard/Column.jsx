@@ -90,7 +90,7 @@ export const columns = [
     },
     {
         id: "category",
-        accessorKey: "category.label",
+        accessorKey: "category.value",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Kategori" className={"w-[200px]"} />
         ),
