@@ -15,7 +15,7 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        $projects = Project::all()->map(function ($project) {
+        $projects = Project::with('alatKerjas')->map(function ($project) {
             // Format the date fields using Carbon
             $project->tanggal_efektif_kontrak = Carbon::parse($project->tanggal_efektif_kontrak)->format('d-m-Y');
             $project->akhir_kontrak = Carbon::parse($project->akhir_kontrak)->format('d-m-Y');
