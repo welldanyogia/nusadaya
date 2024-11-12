@@ -21,7 +21,7 @@ export function DataTableToolbar({ table,category }) {
                 {table.getColumn("category") && (
                     <DataTableFacetedFilter
                         column={table.getColumn("category")}
-                        title="Category"
+                        title="Kategori"
                         options={category}
                     />
                 )}

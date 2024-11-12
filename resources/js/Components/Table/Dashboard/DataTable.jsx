@@ -58,48 +58,6 @@ export function DataTable({columns, data,category}) {
         getFacetedUniqueValues: getFacetedUniqueValues(),
     })
 
-    // async function getCategories() {
-    //     const data = await getData();
-    //     const categories = Array.from(new Set(data.map(item => item.category)));
-    //     console.log(categories)
-    //     return categories;
-    // }
-
-    // const [categories, setCategories] = useState([]);
-
-    // useEffect(() => {
-    //     async function fetchCategories() {
-    //         const categoriesData = await getData();
-    //         const uniqueCategories = Array.from(new Set(categoriesData.map(item => item.category)));
-    //         console.log(uniqueCategories)
-    //         setCategories(uniqueCategories);
-    //     }
-    //
-    //     fetchCategories();
-    // }, []);
-
-    const categories = [
-        {
-            label:"PEMBANGKIT",
-            value:"pembangkit",
-        },
-        {
-            label:"DISTRIBUSI",
-            value:"distribusi"
-        },
-        {
-            label:"PELAYANAN PELANGGAN",
-            value:"pelayanan pelanggan",
-        },
-        {
-            label:"TRANSMISI",
-            value:"transmisi",
-        },
-        {
-            label:"AIL DOWNLOADER",
-            value:"AIL DOWNLOADER",
-        }
-    ]
 
     return (
         <div className="rounded-md">
