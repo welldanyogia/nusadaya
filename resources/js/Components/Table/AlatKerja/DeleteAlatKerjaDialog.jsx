@@ -16,7 +16,6 @@ export function DeleteAlatKerjaDialog({ data }) {
     const { delete: destroy, processing } = useForm()
 
     const handleDelete = () => {
-        // console.log("data",data)
         destroy(route('alatkerja.destroy', data.original.id), {
             preserveScroll: true,
             onSuccess: () => {
