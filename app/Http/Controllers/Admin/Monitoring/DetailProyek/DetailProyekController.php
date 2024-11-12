@@ -55,13 +55,13 @@ class DetailProyekController extends Controller
             // Tentukan keterangan berdasarkan sisa masa pakai
             if ($sisaMasaPakai >= 3) {
                 $tool->keterangan = 'Normal';
-                $countKeterangan['Normal']++; // Tambah hitungan untuk Normal
+//                $countKeterangan['Normal']++; // Tambah hitungan untuk Normal
             } elseif ($sisaMasaPakai <= 1 && $sisaMasaPakai >= 0) {
                 $tool->keterangan = 'Kritis';
-                $countKeterangan['Kritis']++; // Tambah hitungan untuk Kritis
+//                $countKeterangan['Kritis']++; // Tambah hitungan untuk Kritis
             } elseif ($sisaMasaPakai < 0) {
                 $tool->keterangan = 'Kronis';
-                $countKeterangan['Kronis']++; // Tambah hitungan untuk Kronis
+//                $countKeterangan['Kronis']++; // Tambah hitungan untuk Kronis
             }
 
             // Simpan data yang sudah di-update
