@@ -23,7 +23,7 @@ export function DeleteProyekDialog({ data }) {
 
 
     const handleDelete = () => {
-        console.log("data",data)
+        // console.log("data",data)
         destroy(route('proyek.destroy', data.original.id), {
             preserveScroll: true,
             onSuccess: () => {
@@ -38,7 +38,7 @@ export function DeleteProyekDialog({ data }) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button variant="destructive" onClick={() => console.log("data:", data.original)}>
+                <Button variant="destructive">
                     Hapus
                 </Button>
             </AlertDialogTrigger>

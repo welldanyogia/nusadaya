@@ -75,7 +75,7 @@ export function TambahAlatKerjaDialog({projects}) {
                 onFinish: () => {
                     setLoading(false);
                     setOpen(false);
-                    console.log("Form submission finished"); // Confirm form submission is complete
+                    // console.log("Form submission finished"); // Confirm form submission is complete
                 },
             });
             // console.log("Data alat kerja berhasil ditambahkan");

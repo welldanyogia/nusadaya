@@ -180,9 +180,9 @@ export function TambahProyekDialog() {
                     });
                 },
             });
-            console.log('Project added successfully');
+            // console.log('Project added successfully');
         } catch (error) {
-            console.error('Error adding project:', error.response?.data || error.message);
+            // console.error('Error adding project:', error.response?.data || error.message);
         }
     };
 

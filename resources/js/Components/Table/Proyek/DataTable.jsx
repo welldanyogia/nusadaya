@@ -143,7 +143,7 @@ export function DataTable({columns, data,category}) {
             item.keterangan || "-",
         ]));
 
-        console.log(tableData); // Memeriksa tableData yang akan ditampilkan
+        // console.log(tableData); // Memeriksa tableData yang akan ditampilkan
 
         autoTable(doc, {
             head: [columns.map(col => col.header)],

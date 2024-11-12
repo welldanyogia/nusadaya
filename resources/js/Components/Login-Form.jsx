@@ -49,7 +49,7 @@ export function LoginForm() {
 
     const handleChange = (e) => {
         setData(e.target.name, e.target.value)
-        console.log(data)
+        // console.log(data)
     }
 
     return (

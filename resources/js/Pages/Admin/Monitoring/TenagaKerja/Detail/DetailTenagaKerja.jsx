@@ -45,10 +45,10 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
         formData.append('tenaga_kerja_id', tenagakerja.id); // Ensure this is set
 
         try {
-            console.log("Uploading file with data: ", {
-                tenaga_kerja_id: tenagakerja.id,
-                file: selectedFile,
-            });
+            // console.log("Uploading file with data: ", {
+            //     tenaga_kerja_id: tenagakerja.id,
+            //     file: selectedFile,
+            // });
 
             const response = await axios.post(route('tenagakerja.documentUpload'), formData, {
                 headers: {
@@ -59,11 +59,11 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
             setLoading(false)
             setAddDocument(false)
             router.reload()
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
             setLoading(false)
             setAddDocument(false)
-            console.error('Upload failed:', error.response ? error.response.data : error.message);
+            // console.error('Upload failed:', error.response ? error.response.data : error.message);
         }
     };
 

@@ -190,9 +190,9 @@ export function EditProyekDialog({data}) {
                     // });
                 },
             });
-            console.log('Project updated successfully');
+            // console.log('Project updated successfully');
         } catch (error) {
-            console.error('Error updating project:', error.response?.data || error.message);
+            // console.error('Error updating project:', error.response?.data || error.message);
         }
     };
     return (

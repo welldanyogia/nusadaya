@@ -34,12 +34,12 @@ export function CategoryComboBox({ category, setCategory, setID, valueCat }) {
             if (response.status === 200) {
                 setCategory(response.data); // Update the categories
                 setCat(response.data)
-                console.log('response data :', response.data)
+                // console.log('response data :', response.data)
             } else {
-                console.error('Error fetching categories:', response.statusText);
+                // console.error('Error fetching categories:', response.statusText);
             }
         } catch (error) {
-            console.error('Error fetching categories:', error);
+            // console.error('Error fetching categories:', error);
         }
     };
 
@@ -57,7 +57,7 @@ export function CategoryComboBox({ category, setCategory, setID, valueCat }) {
 
                 if (response.status === 201) {
                     const createdCategory = response.data;
-                    console.log('Created Category:', createdCategory);
+                    // console.log('Created Category:', createdCategory);
 
                     // Update category state to include the new category
                     setCategory((prevCategories) => [...prevCategories, createdCategory]);
@@ -69,7 +69,7 @@ export function CategoryComboBox({ category, setCategory, setID, valueCat }) {
 
                     // Fetch the updated categories from the API
                     await fetchCategories();
-                    console.log(category)
+                    // console.log(category)
 
                     setOpen(false);
                 } else {

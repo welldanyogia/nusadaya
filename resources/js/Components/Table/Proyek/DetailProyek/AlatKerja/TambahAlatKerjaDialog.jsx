@@ -15,7 +15,6 @@ import {useState} from "react";
 import {router} from "@inertiajs/react";
 
 export function TambahAlatKerjaDialog({project}) {
-    console.log("proyek tambah :",project)
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState({
@@ -69,7 +68,7 @@ export function TambahAlatKerjaDialog({project}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // if (!validateForm()) return;
-        console.log("form data:", formData);
+        // console.log("form data:", formData);
 
         setLoading(true);
 
@@ -80,9 +79,9 @@ export function TambahAlatKerjaDialog({project}) {
                     setOpen(false);
                 },
             });
-            console.log('Data alat kerja berhasil ditambahkan');
+            // console.log('Data alat kerja berhasil ditambahkan');
         } catch (error) {
-            console.error('Error adding tool:', error.response?.data || error.message);
+            //console.error('Error adding tool:', error.response?.data || error.message);
         }
     };
 

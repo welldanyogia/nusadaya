@@ -16,7 +16,7 @@ import {CategoryComboBox} from "@/Components/Table/Proyek/CategoryComboBox.jsx";
 import {ProjectComboBox} from "@/Components/Table/AlatKerja/ProjectComboBox.jsx";
 
 export function EditAlatKerjaDialog({data,project}) {
-    console.log(data)
+    // console.log(data)
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     // const [category, setCategory] = useState([]);
@@ -78,7 +78,7 @@ export function EditAlatKerjaDialog({data,project}) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateForm()) return;
-        console.log("form data:",formData)
+        // console.log("form data:",formData)
 
         setLoading(true);
 
@@ -89,9 +89,9 @@ export function EditAlatKerjaDialog({data,project}) {
                     setOpen(false);
                 },
             });
-            console.log('Data alat kerja berhasil diperbarui');
+            // console.log('Data alat kerja berhasil diperbarui');
         } catch (error) {
-            console.error('Error updating project:', error.response?.data || error.message);
+            // console.error('Error updating project:', error.response?.data || error.message);
         }
     };
 
@@ -99,9 +99,6 @@ export function EditAlatKerjaDialog({data,project}) {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button variant="outline"
-                        onClick={()=>{
-                            console.log("edit data :",formData)
-                        }}
                         className={"bg-fountain-blue-400 text-white rounded-xl"}>Edit</Button>
             </DialogTrigger>
             <DialogContent

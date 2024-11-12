@@ -172,6 +172,8 @@ export default function Table({data,category}) {
     //     fetchData();
     // }, []);
 
+    console.log("data dashboard : ",data)
+
     return (
         <div className="container mx-auto py-10">
             <DataTable columns={columns} data={data} category={category}/>
