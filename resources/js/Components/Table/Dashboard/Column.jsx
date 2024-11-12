@@ -95,7 +95,10 @@ export const columns = [
             <DataTableColumnHeader column={column} title="Kategori" className={"w-[200px]"} />
         ),
         cell: ({ getValue }) => {
-            const category = getValue();
+            let category = getValue();
+            // Convert to uppercase and replace underscores with spaces
+            category = category.replace(/_/g, ' ').toUpperCase();
+
             const colorClass = categoryColors[category] || "bg-gray-500";
             return (
                 <div className="flex justify-center">
