@@ -26,7 +26,7 @@ export default function DetailProyek({auth, project, countKeterangan}) {
             title="Detail Proyek"
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Detail Proyek</h2>}
         >
-            <Head title="DashboardProyek"/>
+            <Head title="Dashboard"/>
 
             <div className="py-12 space-y-6">
                 {/*<div*/}

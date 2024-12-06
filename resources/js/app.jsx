@@ -5,7 +5,7 @@ import {createRoot, hydrateRoot} from 'react-dom/client';
 import {createInertiaApp} from '@inertiajs/react';
 import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 import {BrowserRouter} from "react-router-dom";
-import './Pages/Admin/Monitoring/Proyek/DashboardProyek.jsx';
+import './Pages/Admin/Monitoring/Proyek/Dashboard.jsx';
 
 
 const appName = import.meta.env.VITE_APP_NAME || 'SMAK-PLN  ';

@@ -5,13 +5,13 @@ import Table from "@/Components/Table/AlatKerja/Table.jsx";
 import {Card, CardContent} from "@/Components/ui/card.jsx";
 import {Wrench} from "lucide-react";
 
-export default function DashboardProyek({auth, tools, projects, countKeterangan}) {
+export default function Dashboard({auth, tools, projects, countKeterangan}) {
     return (
         <AuthenticatedAdmin
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">DashboardProyek</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
         >
-            <Head title="DashboardProyek"/>
+            <Head title="Dashboard"/>
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
