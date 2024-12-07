@@ -15,16 +15,6 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-//        $projects = Project::with('alatKerjas')->get()->map(function ($project) {
-//            // Format the date fields using Carbon
-//            $project->tanggal_efektif_kontrak = Carbon::parse($project->tanggal_efektif_kontrak)->format('d-m-Y');
-//            $project->akhir_kontrak = Carbon::parse($project->akhir_kontrak)->format('d-m-Y');
-//            $project->created_at = Carbon::parse($project->created_at)->format('d-m-Y');
-//            $project->updated_at = Carbon::parse($project->updated_at)->format('d-m-Y');
-//
-//            $project->category_name = $project->category ? $project->category->label : null;
-//            return $project;
-//        });
         $projects = Project::with('alatkerjas')->get()->map(function ($project) {
             // Cek jika ada perubahan hari dan update status_sisa_jangka_waktu_kontrak_bulan
             $currentDate = Carbon::now();
@@ -76,15 +66,16 @@ class AdminDashboardController extends Controller
             return $project;
         });
 
+        // Hitung jumlah tenaga kerja per project dan update kolom 'realisasi_dilapangan'
         foreach ($projects as $project) {
-            $jumlahTenagaKerja = $project->employees->count(); // Hitung jumlah tenaga kerja untuk setiap proyek
+            $jumlahTenagaKerja = $project->tenagakerjas->count(); // Hitung jumlah tenaga kerja untuk setiap proyek
             $project->realisasi_dilapangan = $jumlahTenagaKerja; // Update kolom sesuai dengan jumlah tenaga kerja
             $project->save(); // Simpan perubahan
         }
 
         $total_project = $projects->count();
         $category = Category::all();
-        $total_tenagakerja = Tenagakerja::all()->count();
+        $total_tenagakerja = TenagaKerja::all()->count();
 
         return Inertia::render('Admin/Dashboard', [
             'projects' => $projects,
