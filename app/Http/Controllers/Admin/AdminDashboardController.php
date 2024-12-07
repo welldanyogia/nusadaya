@@ -70,7 +70,7 @@ class AdminDashboardController extends Controller
         foreach ($projects as $project) {
             $jumlahTenagaKerja = $project->employees->count(); // Hitung jumlah tenaga kerja untuk setiap proyek
             $project->realisasi_dilapangan = $jumlahTenagaKerja; // Update kolom sesuai dengan jumlah tenaga kerja
-            $project->save(); // Simpan perubahan
+//            $project->save(); // Simpan perubahan
         }
 
         $total_project = $projects->count();
