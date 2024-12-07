@@ -19,7 +19,6 @@ export default function Dashboard({auth,projects, total_project,category,total_t
         created_at: formatDate(project.created_at),
         updated_at: formatDate(project.updated_at),
     }));
-    console.log(formattedProjects)
     // console.log(formattedProjects)
     return (
         <AuthenticatedAdmin
