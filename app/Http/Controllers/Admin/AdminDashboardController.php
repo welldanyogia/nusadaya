@@ -19,7 +19,7 @@ class AdminDashboardController extends Controller
         $projects = Project::with('alatkerjas','employees')->get()->map(function ($project) {
 
             $project_employees = $project->employees->count() ?? 0;
-            $project->realisasi_dilapangan = $project_employees;
+            $project->realisasi_di_lapangan = $project_employees;
             $project->save();
 
             // Cek jika ada perubahan hari dan update status_sisa_jangka_waktu_kontrak_bulan
