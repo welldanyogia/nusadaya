@@ -77,11 +77,20 @@ class AdminDashboardController extends Controller
         $category = Category::all();
         $total_tenagakerja = TenagaKerja::all()->count();
 
-        return Inertia::render('Admin/Dashboard', [
-            'projects' => $projects,
-            'total_project' => $total_project,
-            'category' => $category,
-            'total_tenagakerja' => $total_tenagakerja,
-        ]);
+        // Tambahkan log untuk melihat error SQL
+        try {
+            return Inertia::render('Admin/Dashboard', [
+                'projects' => $projects,
+                'total_project' => $total_project,
+                'category' => $category,
+                'total_tenagakerja' => $total_tenagakerja,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error rendering Admin Dashboard:', [
+                'error' => $e->getMessage(),
+                'sql' => $e->getTraceAsString(),
+            ]);
+            throw $e; // Jika perlu, lempar exception ke luar untuk menangani di tempat lain
+        }
     }
 }
