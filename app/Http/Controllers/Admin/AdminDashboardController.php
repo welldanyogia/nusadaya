@@ -15,7 +15,13 @@ class AdminDashboardController extends Controller
 {
     public function index()
     {
-        $projects = Project::with('alatkerjas')->get()->map(function ($project) {
+
+        $projects = Project::with('alatkerjas','employees')->get()->map(function ($project) {
+
+            $project_employees = $project->employees->count() ?? 0;
+            $project->realisasi_dilapangan = $project_employees;
+            $project->save();
+
             // Cek jika ada perubahan hari dan update status_sisa_jangka_waktu_kontrak_bulan
             $currentDate = Carbon::now();
             $akhirKontrak = Carbon::parse($project->akhir_kontrak);
@@ -67,11 +73,7 @@ class AdminDashboardController extends Controller
         });
 
         // Hanya update kolom 'realisasi_dilapangan' berdasarkan jumlah tenaga kerja
-        foreach ($projects as $project) {
-            $jumlahTenagaKerja = $project->employees->count(); // Hitung jumlah tenaga kerja untuk setiap proyek
-            $project->realisasi_dilapangan = $jumlahTenagaKerja; // Update kolom sesuai dengan jumlah tenaga kerja
-//            $project->save(); // Simpan perubahan
-        }
+
 
         $total_project = $projects->count();
         $category = Category::all();
