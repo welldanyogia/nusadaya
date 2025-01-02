@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProjectSeeder extends Seeder
@@ -24,18 +23,12 @@ class ProjectSeeder extends Seeder
                 'realisasi_di_lapangan' => 176,
                 'nilai_kontrak_inc_ppn' => 10000000,
                 'akhir_kontrak' => '2027-07-31',
-                'status_sisa_jangka_waktu_kontrak_bulan' => 36,
+                'status_sisa_jangka_waktu_kontrak_bulan' => 35,
                 'keterangan' => '',
             ],
             [
-                'category_id' => 2,
+                'category_id' => 1,
                 'nama_pekerjaan' => 'LISDES ZONA MALUKU UTARA',
-//                'alat_kerja' => [
-//                    'total_alat_kerja' => 8,
-//                    'kritis' => 1,
-//                    'normal' => 6,
-//                    'kronis' => 1,
-//                ],
                 'tanggal_efektif_kontrak' => '2022-06-30',
                 'jenis_kontrak' => '',
                 'jangka_waktu_bulan' => 60,
@@ -43,18 +36,12 @@ class ProjectSeeder extends Seeder
                 'realisasi_di_lapangan' => 121,
                 'nilai_kontrak_inc_ppn' => 10000000,
                 'akhir_kontrak' => '2027-07-31',
-                'status_sisa_jangka_waktu_kontrak_bulan' => 36,
+                'status_sisa_jangka_waktu_kontrak_bulan' => 35,
                 'keterangan' => '',
             ],
             [
-                'category_id' => 3,
+                'category_id' => 2,
                 'nama_pekerjaan' => 'YANTEK MMU',
-//                'alat_kerja' => [
-//                    'total_alat_kerja' => 20,
-//                    'kritis' => 3,
-//                    'normal' => 15,
-//                    'kronis' => 2,
-//                ],
                 'tanggal_efektif_kontrak' => '2023-04-17',
                 'jenis_kontrak' => '',
                 'jangka_waktu_bulan' => 60,
@@ -62,18 +49,12 @@ class ProjectSeeder extends Seeder
                 'realisasi_di_lapangan' => 772,
                 'nilai_kontrak_inc_ppn' => 10000000,
                 'akhir_kontrak' => '2028-04-30',
-                'status_sisa_jangka_waktu_kontrak_bulan' => 45,
+                'status_sisa_jangka_waktu_kontrak_bulan' => 44,
                 'keterangan' => '',
             ],
             [
-                'category_id' => 4,
+                'category_id' => 3,
                 'nama_pekerjaan' => 'BILLMAN MMU',
-//                'alat_kerja' => [
-//                    'total_alat_kerja' => 12,
-//                    'kritis' => 1,
-//                    'normal' => 9,
-//                    'kronis' => 2,
-//                ],
                 'tanggal_efektif_kontrak' => '2021-06-08',
                 'jenis_kontrak' => 'Volume Based Per Juni 2023',
                 'jangka_waktu_bulan' => 60,
@@ -81,18 +62,12 @@ class ProjectSeeder extends Seeder
                 'realisasi_di_lapangan' => 355,
                 'nilai_kontrak_inc_ppn' => 10000000,
                 'akhir_kontrak' => '2028-06-30',
-                'status_sisa_jangka_waktu_kontrak_bulan' => 47,
+                'status_sisa_jangka_waktu_kontrak_bulan' => 46,
                 'keterangan' => '',
             ],
             [
-                'category_id' => 5,
+                'category_id' => 4,
                 'nama_pekerjaan' => 'OPGI UIW MMU',
-//                'alat_kerja' => [
-//                    'total_alat_kerja' => 15,
-//                    'kritis' => 1,
-//                    'normal' => 10,
-//                    'kronis' => 4,
-//                ],
                 'tanggal_efektif_kontrak' => '2023-04-17',
                 'jenis_kontrak' => '',
                 'jangka_waktu_bulan' => 60,
@@ -100,18 +75,25 @@ class ProjectSeeder extends Seeder
                 'realisasi_di_lapangan' => 26,
                 'nilai_kontrak_inc_ppn' => 10000000,
                 'akhir_kontrak' => '2028-04-30',
-                'status_sisa_jangka_waktu_kontrak_bulan' => 45,
+                'status_sisa_jangka_waktu_kontrak_bulan' => 44,
                 'keterangan' => '',
             ],
             [
-                'category_id' => 1,
+                'category_id' => 4,
+                'nama_pekerjaan' => 'GP UIW MMU',
+                'tanggal_efektif_kontrak' => '2023-04-17',
+                'jenis_kontrak' => '',
+                'jangka_waktu_bulan' => 60,
+                'jumlah_tenaga_kerja_sesuai_kontrak_fix_cost' => 16,
+                'realisasi_di_lapangan' => 16,
+                'nilai_kontrak_inc_ppn' => 10000000,
+                'akhir_kontrak' => '2028-04-30',
+                'status_sisa_jangka_waktu_kontrak_bulan' => 44,
+                'keterangan' => '',
+            ],
+            [
+                'category_id' => 5,
                 'nama_pekerjaan' => 'MANAJEMEN AIL',
-//                'alat_kerja' => [
-//                    'total_alat_kerja' => 7,
-//                    'kritis' => 0,
-//                    'normal' => 5,
-//                    'kronis' => 2,
-//                ],
                 'tanggal_efektif_kontrak' => '2023-07-25',
                 'jenis_kontrak' => 'Volume Based',
                 'jangka_waktu_bulan' => 12,
@@ -119,14 +101,26 @@ class ProjectSeeder extends Seeder
                 'realisasi_di_lapangan' => 58,
                 'nilai_kontrak_inc_ppn' => 10000000,
                 'akhir_kontrak' => '2024-08-25',
-                'status_sisa_jangka_waktu_kontrak_bulan' => 1,
+                'status_sisa_jangka_waktu_kontrak_bulan' => 0,
                 'keterangan' => '',
-            ]
+            ],
+            [
+                'category_id' => 5,
+                'nama_pekerjaan' => 'DOWNLOADER PLN MOBILE',
+                'tanggal_efektif_kontrak' => '2023-07-25',
+                'jenis_kontrak' => 'Volume Based',
+                'jangka_waktu_bulan' => 12,
+                'jumlah_tenaga_kerja_sesuai_kontrak_fix_cost' => 49,
+                'realisasi_di_lapangan' => 49,
+                'nilai_kontrak_inc_ppn' => 10000000,
+                'akhir_kontrak' => '2024-08-25',
+                'status_sisa_jangka_waktu_kontrak_bulan' => 0,
+                'keterangan' => '',
+            ],
         ];
 
         foreach ($projects as $project) {
             Project::create($project);
         }
-
     }
 }
