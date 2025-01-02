@@ -483,5 +483,9 @@ class AlatKerjaSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+        $this->call(AlatKerjaSeeder2::class);
+        $this->call(AlatKerjaBILLMAN::class);
+        $this->call(AlatKerjaOPGI::class);
+        $this->call(AlatKerjaPGP::class);
     }
 }
