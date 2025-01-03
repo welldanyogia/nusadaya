@@ -9,9 +9,6 @@ import axios from 'axios';
 import {Viewer, Worker} from "@react-pdf-viewer/core";
 import {Badge} from "@/Components/ui/badge.jsx";
 import {Input} from "@/Components/ui/input.jsx";
-import dotenv from 'dotenv';
-dotenv.config(); // Load environment variables from .env file
-
 
 export default function DetailTenagaKerja({auth, tenagakerja}) {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -72,24 +69,9 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
 
     const handleDownloadDocument = () => {
         if (pdfURL) {
-            // Assuming VARIABEL_DI_ENV is available in your environment or as a variable
-            const environmentVariable = process.env.GOOGLE_CLOUD_STORAGE_BUCKET; // Adjust this to get your environment variable
-
-            if (environmentVariable) {
-                // Construct the dynamic URL based on the environment variable
-                const modifiedUrl = pdfURL.includes(`https://storage.googleapis.com/${environmentVariable}`)
-                    ? pdfURL.replace(`https://storage.googleapis.com/${environmentVariable}`, `https://${environmentVariable}.storage.googleapis.com`)
-                    : pdfURL;
-
-                console.log(modifiedUrl)
-                router.get(modifiedUrl, {}, { preserveState: false }); // Trigger download by hitting the route
-            } else {
-                console.error('Environment variable VARIABEL_DI_ENV is not defined.');
-            }
+            router.get(pdfURL, {}, { preserveState: false }); // Trigger download by hitting the route
         }
     };
-
-
 
 
     return (
