@@ -50,13 +50,13 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('x65s/i"3;T~c'), // Jangan lupa untuk mengganti password ini
             'role' => 'admin',
         ]);
-        User::create([
-            'name' => 'admin003',
-            'username' => 'admin003',
-            'email' => 'admin003@admin.com',
-            'password' => bcrypt(`'Az3vIwM{:pY'`),
-            'role' => 'admin',
-        ]);
+//        User::create([
+//            'name' => 'admin003',
+//            'username' => 'admin003',
+//            'email' => 'admin003@admin.com',
+//            'password' => bcrypt(`'Az3vIwM{:pY'`),
+//            'role' => 'admin',
+//        ]);
         User::create([
             'name' => 'admin004',
             'username' => 'admin004',
