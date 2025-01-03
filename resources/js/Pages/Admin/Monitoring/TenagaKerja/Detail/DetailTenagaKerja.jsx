@@ -67,6 +67,12 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
         }
     };
 
+    const handleDownloadDocument = () => {
+        if (pdfURL) {
+            router.get(pdfURL, {}, { preserveState: false }); // Trigger download by hitting the route
+        }
+    };
+
 
     return (
         <AuthenticatedAdmin
@@ -206,9 +212,14 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
                                 </div>
                             </div>
                             {openPDF === false && pdfURL !== null ? (
+                                <div>
                                 <Button className={""} onClick={() => setOpenPDF(true)}>
                                     Lihat Dokumen
                                 </Button>
+                                <Button className={""} onClick={() => handleDownloadDocument()}>
+                                    Download Dokumen
+                                </Button>
+                                </div>
                             ) : (
                                 <Button className={!pdfURL ? 'hidden' : ''}
                                         variant={'destructive'}

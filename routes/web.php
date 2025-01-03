@@ -97,5 +97,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/monitoring/tenagakerja/{id}', [TenagaKerjaController::class, 'update'])->name('tenagakerja.update');
 //    Upload Dokumen Tenaga Kerja
     Route::post('/admin/tenaga-kerja/upload-document', [TenagaKerjaController::class, 'documentUploadGCS'])->name('tenagakerja.documentUpload');
+//    Download File Tenaga Kerja
+    Route::get('/tenagakerja/{tenagaKerjaId}/download', [TenagaKerjaController::class, 'downloadFile'])->name('tenagakerja.download');
+
 });
 require __DIR__ . '/auth.php';

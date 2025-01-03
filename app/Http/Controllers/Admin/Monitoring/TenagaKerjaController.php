@@ -233,6 +233,37 @@ class TenagaKerjaController extends Controller
     }
 
 
+    public function downloadFile($tenagaKerjaId)
+    {
+        try {
+            // Find the latest document based on tenaga_kerja_id
+            $document = Document::where('tenaga_kerja_id', $tenagaKerjaId)
+                ->latest() // Get the latest document
+                ->first();
+
+            if (!$document) {
+                // If no document is found, return an error response
+                return response()->json(['error' => 'No document found for this employee.'], 404);
+            }
+
+            // Get the file path (URL in this case)
+            $fileUrl = $document->file_path;
+
+            // Check if the URL is valid and not empty
+            if (filter_var($fileUrl, FILTER_VALIDATE_URL)) {
+                // Redirect the user to the file's URL (cloud storage in this case)
+                return redirect()->away($fileUrl);
+            } else {
+                // If the URL is not valid, return an error
+                return response()->json(['error' => 'Invalid file URL.'], 400);
+            }
+        } catch (\Exception $e) {
+            // Log any exception and return a server error
+            Log::error("An error occurred while downloading the file: " . $e->getMessage());
+            return response()->json(['error' => 'An error occurred while downloading the file.'], 500);
+        }
+    }
+
 
 
     public function uploadFile(Request $request)
