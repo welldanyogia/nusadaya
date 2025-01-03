@@ -219,8 +219,8 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
                         </div>
                         {openPDF === true && pdfURL !== null && (
                             <div className="mt-4 flex justify-center items-center p-4 relative">
-                                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                                    <div
+                                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+                                <div
                                         style={{
                                             border: '1px solid rgba(0, 0, 0, 0.3)',
                                             // height: '750px',
