@@ -67,11 +67,38 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
         }
     };
 
-    const handleDownloadDocument = () => {
-        if (pdfURL) {
-            router.get(pdfURL, {}, { preserveState: false }); // Trigger download by hitting the route
+    const handleDownloadDocument = async (pdfUrl) => {
+        if (!pdfUrl) {
+            console.error("PDF URL is not provided.");
+            return;
+        }
+
+        try {
+            const response = await fetch(pdfUrl, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/pdf",
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch the document: ${response.statusText}`);
+            }
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = pdfUrl.split("/").pop() || "document.pdf"; // Nama file diambil dari URL atau default
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Error downloading the document:", error);
         }
     };
+
 
 
     return (
@@ -216,7 +243,7 @@ export default function DetailTenagaKerja({auth, tenagakerja}) {
                                 <Button className={""} onClick={() => setOpenPDF(true)}>
                                     Lihat Dokumen
                                 </Button>
-                                <Button className={""} onClick={() => handleDownloadDocument()}>
+                                <Button className={""} onClick={() => handleDownloadDocument(pdfURL)}>
                                     Download Dokumen
                                 </Button>
                                 </div>
