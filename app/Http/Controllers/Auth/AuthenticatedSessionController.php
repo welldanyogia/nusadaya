@@ -37,6 +37,7 @@ class AuthenticatedSessionController extends Controller
 //        return redirect()->intended(route('dashboard', absolute: false));
         switch ($user->role) {
             case 'admin':
+            case 'user':
             case 'superadmin':
                 return redirect()->intended(route('superadmin.dashboard'))->with('refresh', true);
             //            case 'user':

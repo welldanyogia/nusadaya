@@ -61,7 +61,7 @@ export default function Dashboard({auth, tools, projects, countKeterangan}) {
                             </CardContent>
                         </Card>
                     </div>
-                    <Table data={tools} projects={projects}/>
+                    <Table data={tools} projects={projects} role={auth.user.role}/>
                 </div>
             </div>
         </AuthenticatedAdmin>

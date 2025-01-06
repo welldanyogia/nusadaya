@@ -15,7 +15,6 @@ function formatDate(dateString) {
 }
 
 export default function Dashboard({ auth,projects,projects_by_category,category,flash }) {
-    console.log("data dashboard proyek : ",projects)
     const formattedProjects = projects.map(project => ({
         ...project,
         tanggal_efektif_kontrak: formatDate(project.tanggal_efektif_kontrak),
@@ -94,7 +93,7 @@ export default function Dashboard({ auth,projects,projects_by_category,category,
                             </div>
                         </CardContent>
                     </Card>
-                    <Table data={formattedProjects} category={category}/>
+                    <Table data={formattedProjects} category={category} role={auth.user.role}/>
                 </div>
             </div>
         </AuthenticatedAdmin>

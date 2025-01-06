@@ -9,7 +9,7 @@ export function Navbar({ title,user }) {
         <header className="sticky top-0 z-10 w-full bg-gradient-to-r from-[#F7EEEE] to-fountain-blue-400 shadow backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:shadow-secondary">
             <div className="mx-4 sm:mx-8 flex h-14 items-center">
                 <div className="flex items-center space-x-4 lg:space-x-0">
-                    <SheetMenu />
+                    <SheetMenu user={user}/>
                     <h1 className="font-bold text-fountain-blue-500">{title}</h1>
                 </div>
                 <div className="flex flex-1 items-center space-x-2 justify-end">

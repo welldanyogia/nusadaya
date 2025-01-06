@@ -9,7 +9,7 @@ import { useSidebarToggle } from '@/hooks/useSidebarToogle.js';
 import { SidebarToggle } from './SideBarToogle.jsx';
 // import 'dotenv/config'
 
-export function Sidebar() {
+export function Sidebar({user}) {
     const appName = import.meta.env.VITE_APP_NAME || 'SMAK-PLN'; // Fallback value if env var is not set
     const sidebar = useStore(useSidebarToggle, (state) => state);
 
@@ -52,7 +52,7 @@ export function Sidebar() {
                     </Link>
                 </Button>
 
-                <Menu isOpen={sidebar?.isOpen} />
+                <Menu isOpen={sidebar?.isOpen} user={user}/>
             </div>
         </aside>
     );

@@ -105,9 +105,9 @@ export const columns = [
     },
     {
         accessorKey: "documents",
-        title: "Status Tanda Tangan Kontrak",
+        title: "Arsip Kontrak",
         header: ({column}) => (
-            <DataTableColumnHeader column={column} title="Status Tanda Tangan Kontrak" className={"w-[200px]"}/>
+            <DataTableColumnHeader column={column} title="Arsip Kontrak" className={"w-[200px]"}/>
         ),
         cell: ({getValue}) => {
             const documents = getValue();
@@ -115,11 +115,11 @@ export const columns = [
                 <div className="flex justify-center text-center">
                     {documents && documents.length > 0 ? (
                         <span className="px-2 py-1 text-sm font-medium text-white bg-green-500 rounded-md">
-                            Sudah
+                            Ada
                         </span>
                     ) : (
                         <span className="px-2 py-1 text-sm font-medium text-white bg-red-600 rounded-md">
-                            Belum
+                            Tidak Ada
                         </span>
                     )}
                 </div>

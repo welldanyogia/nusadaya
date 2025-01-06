@@ -10,9 +10,9 @@ import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/Comp
 import {router} from "@inertiajs/react";
 // import { handleSignOut } from '../actions/signout';
 
-export function Menu({ isOpen }) {
+export function Menu({ isOpen,user }) {
     const pathname = window.location.pathname;
-    const menuList = getMenuList(pathname);
+    const menuList = getMenuList(pathname,user);
     const navigate = useNavigate();
 
     const handleSignOut = async () => {

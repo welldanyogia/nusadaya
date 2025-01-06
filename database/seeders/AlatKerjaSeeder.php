@@ -13,10 +13,17 @@ class AlatKerjaSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $projectId = DB::table('projects')->where('nama_pekerjaan', 'LISDES ZONA MALUKU')->value('id');
+
+        // Pastikan project_id ditemukan sebelum insert
+        if (!$projectId) {
+            throw new \Exception('Project dengan nama tersebut tidak ditemukan di database.');
+        }
         DB::table('alat_kerjas')->insert([
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Box Motor Trail',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -29,7 +36,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Tangga Telescopic anti statis',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -42,7 +49,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Telescopic hotstick 20 kV 11 Meter',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -55,7 +62,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Lampu Senter Re-Charger',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -68,7 +75,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Parang',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 24,
@@ -81,7 +88,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'GPS Garmin',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 48,
@@ -94,7 +101,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Chain Saw 20"',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -107,7 +114,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Teropong',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 30,
@@ -120,7 +127,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Arit Sawit',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 24,
@@ -133,7 +140,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Handy Talky Dual Band',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 60,
@@ -146,7 +153,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Sepatu Karet',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -159,7 +166,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'AVL (Automatic Vehicle Locater)',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -172,7 +179,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Groundcluster',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 48,
@@ -185,7 +192,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Full Body Harness + Lock Lanyard',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 24,
@@ -198,7 +205,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Ear Muff',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -211,7 +218,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Ear Plug',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -224,7 +231,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Seragam',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -237,7 +244,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Sarung Tangan 20kV',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 24,
@@ -250,7 +257,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Sepatu Safety',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -263,7 +270,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Safety Shoes 20kV',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 24,
@@ -276,7 +283,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Helm Safety',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -289,7 +296,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Jas Hujan',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -302,7 +309,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Rompi',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -315,7 +322,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Kotak P3K',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -328,7 +335,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Dispenser',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -341,7 +348,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Laptop',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 60,
@@ -354,7 +361,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Printer',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 60,
@@ -367,7 +374,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Meja',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 60,
@@ -380,7 +387,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Kursi',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 60,
@@ -393,7 +400,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'ID CARD',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -406,7 +413,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Lampu Senter Re-Charger',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -419,7 +426,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Lampu Sorot 12 Volt 55 Watt',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 12,
@@ -432,7 +439,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Tool set mekanik (< 1000 kW)',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -445,7 +452,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Tool set electrik, Alat Ukur dan Instrument',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -458,7 +465,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Radio Komunikasi',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,
@@ -471,7 +478,7 @@ class AlatKerjaSeeder extends Seeder
             ],
             [
                 'id' => Str::uuid(),
-                'project_id' => '92bc92f6-c402-44ba-81ce-8ceb11c367d8',
+                'project_id' => $projectId,
                 'nama_alat' => 'Radio Base Station',
                 'tgl_kontrak' => '2022-06-30',
                 'masa_pakai' => 36,

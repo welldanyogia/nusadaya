@@ -5,7 +5,7 @@ import { Button } from '@/Components/ui/button';
 import { Menu } from './Menu.jsx';
 import { Sheet, SheetHeader, SheetContent, SheetTrigger } from '@/Components/ui/sheet';
 
-export function SheetMenu() {
+export function SheetMenu({user}) {
     const appName = import.meta.env.VITE_APP_NAME || 'SMAK-PLN';
     return (
         <Sheet>
@@ -28,7 +28,7 @@ export function SheetMenu() {
                         </Link>
                     </Button>
                 </SheetHeader>
-                <Menu isOpen/>
+                <Menu isOpen user={user}/>
             </SheetContent>
         </Sheet>
     );

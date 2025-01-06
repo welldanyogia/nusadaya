@@ -33,8 +33,17 @@ import {DeleteAlatKerjaDialog} from "@/Components/Table/AlatKerja/DeleteAlatKerj
 import {EditAlatKerjaDialog} from "@/Components/Table/Proyek/DetailProyek/AlatKerja/EditAlatKerjaDialog.jsx";
 import {TambahAlatKerjaDialog} from "@/Components/Table/Proyek/DetailProyek/AlatKerja/TambahAlatKerjaDialog.jsx";
 import {router} from "@inertiajs/react";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuLabel, DropdownMenuSeparator,
+    DropdownMenuTrigger
+} from "@/Components/ui/dropdown-menu.jsx";
+import * as XLSX from "xlsx";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
-export function DataTable({columns, data, project}) {
+export function DataTable({columns, data, project, role}) {
     const [rowSelection, setRowSelection] = useState({})
     const [columnVisibility, setColumnVisibility] = useState({})
     const [columnFilters, setColumnFilters] = useState([])
@@ -62,6 +71,167 @@ export function DataTable({columns, data, project}) {
         getFacetedUniqueValues: getFacetedUniqueValues(),
     })
 
+    const downloadCSV = (data) => {
+        const csvRows = [];
+        // Get headers
+        const headers = Object.keys(data[0]);
+        csvRows.push(headers.join(','));
+
+        // Format each row
+        for (const row of data) {
+            const values = headers.map(header => {
+                const escaped = ('' + row[header]).replace(/"/g, '\\"');
+                return `"${escaped}"`;
+            });
+            csvRows.push(values.join(','));
+        }
+        const currentDate = new Date().toLocaleDateString('id-ID').replace(/\//g, '-');
+
+        // Create a Blob and download it
+        const blob = new Blob([csvRows.join('\n')], {type: 'text/csv;charset=utf-8;'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.setAttribute('href', url);
+        a.setAttribute('download', `Data Alat Kerja Proyek ${project.nama_pekerjaan} PLN Nusa Daya Maluku - ${currentDate}.csv`);
+        a.click();
+    };
+
+    const downloadExcel = (data) => {
+
+        const dataArray = Object.values(data);
+
+        if (!Array.isArray(dataArray)) {
+            console.error('Error: dataArray is not an array!');
+            return;
+        }
+
+        // Tentukan urutan kolom yang diinginkan
+        const columnOrder = [
+            'Nama Alat',
+            'Tanggal Kontrak',
+            'Tanggal Akhir Kontrak',
+            'Masa Pakai (Bulan)',
+            'Masa Pakai Saat ini (Bulan)',
+            'Sisa Masa Pakai (Bulan)',
+            'Keterangan',
+            'Dibuat Pada',
+            'Diperbarui Pada',
+        ];
+
+        const mappings = {
+            nama_alat: "Nama Alat",
+            tgl_kontrak: "Tanggal Kontrak",
+            tgl_akhir_kontrak: "Tanggal Akhir Kontrak",
+            masa_pakai: "Masa Pakai (Bulan)",
+            masa_pakai_saat_ini: "Masa Pakai Saat ini (Bulan)",
+            sisa_masa_pakai: "Sisa Masa Pakai (Bulan)",
+            keterangan: "Keterangan",
+            created_at: "Dibuat Pada",
+            updated_at: "Diperbarui Pada",
+            category_name: "Kategori",
+        };
+
+        const transformedData = dataArray.map(item => {
+            const result = {};
+            for (const key in item) {
+                if (mappings[key]) {
+                    result[mappings[key]] = item[key];
+                }
+            }
+            return result;
+        });
+
+        // Reorder the data based on the columnOrder
+        const reorderedData = transformedData.map(item => {
+            const reorderedItem = {};
+            columnOrder.forEach(col => {
+                const key = Object.keys(mappings).find(k => mappings[k] === col);
+                if (key) {
+                    reorderedItem[col] = item[mappings[key]];
+                }
+            });
+            return reorderedItem;
+        });
+
+        // Membuat worksheet
+        const worksheet = XLSX.utils.json_to_sheet(reorderedData);
+
+        // Menambahkan styling pada header
+        const headerRange = XLSX.utils.decode_range(worksheet['!ref']);
+        for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
+            const cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
+            const cell = worksheet[cellAddress];
+            if (cell) {
+                cell.s = {
+                    font: { bold: true, color: { rgb: "FFFFFF" }, sz: 12 },
+                    fill: { fgColor: { rgb: "4F81BD" } }, // Background color
+                    alignment: { horizontal: "center", vertical: "center" },
+                };
+            }
+        }
+
+        // Menentukan lebar kolom
+        worksheet['!cols'] = columnOrder.map(() => ({ wch: 20 }));
+
+        // Membuat workbook
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+
+        // Menentukan nama file
+        const currentDate = new Date().toLocaleDateString('id-ID').replace(/\//g, '-');
+        const fileName = `Data Alat Kerja Proyek ${project.nama_pekerjaan} PLN Nusa Daya Maluku - ${currentDate}.xlsx`;
+
+        // Mengunduh file Excel
+        XLSX.writeFile(workbook, fileName);
+    };
+
+
+    const generatePDF = (data) => {
+        // console.log(data); // Memeriksa data yang diterima
+        const doc = new jsPDF({orientation: "landscape"});
+
+        const columns = [
+            {header: 'No', dataKey: 'no'},
+            {header: 'Nama Alat', dataKey: 'nama_alat'},
+            // {header: 'Kategori', dataKey: 'categoryLabel'},
+            {header: 'Tanggal Kontrak', dataKey: 'tgl_kontrak'},
+            {header: 'Tanggal Akhir Kontrak', dataKey: 'tgl_akhir_kontrak'},
+            {header: 'Masa Pakai (Bulan)', dataKey: 'masa_pakai'},
+            {header: 'Masa Pakai Saat ini (Bulan)', dataKey: 'masa_pakai_saat_ini'},
+            {header: 'Keterangan', dataKey: 'keterangan'},
+        ];
+
+        const formatRupiah = (value) => {
+            return `Rp ${parseInt(value, 10).toLocaleString('id-ID')}`;
+        };
+
+        const tableData = data.map((item, index) => ([
+            index + 1,
+            item.nama_alat || "-",
+            // item.category?.label || "-", // Menggunakan label dari category
+            item.tgl_kontrak || "-",
+            item.tgl_akhir_kontrak ? item.tgl_akhir_kontrak : "-",
+            item.masa_pakai || 0,
+            item.masa_pakai_saat_ini || 0,
+            item.sisa_masa_pakai || 0,
+            item.keterangan || "-",
+        ]));
+
+        // console.log(tableData); // Memeriksa tableData yang akan ditampilkan
+
+        autoTable(doc, {
+            head: [columns.map(col => col.header)],
+            body: tableData,
+            theme: 'grid',
+        });
+
+        // Mendapatkan tanggal saat ini dalam format dd-mm-yyyy
+        const currentDate = new Date().toLocaleDateString('id-ID').replace(/\//g, '-');
+
+        // Menyimpan dokumen dengan nama yang diinginkan
+        doc.save(`Data Proyek PLN Nusa Daya Maluku - ${currentDate}.pdf`);
+    };
+
     return (
         <div className="rounded-md py-8">
             <Card className={"rounded-xl"}>
@@ -77,7 +247,7 @@ export function DataTable({columns, data, project}) {
                                     }
                                     className="max-w-sm"
                                 />
-                                <DataTableToolbar table={table} />
+                                <DataTableToolbar table={table}/>
                             </div>
                         </div>
 
@@ -106,9 +276,28 @@ export function DataTable({columns, data, project}) {
                                 </SelectContent>
                             </Select>
                         </div>
+
                         <div className="flex items-center space-x-2 mb-3 w-fit">
-                            <TambahAlatKerjaDialog project={project}/>
+                            {
+                                role !== 'user' && (
+                                    <TambahAlatKerjaDialog project={project}/>
+                                )
+                            }
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button variant="outline">Download Data</Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className="w-fit grid gap-2">
+                                    <DropdownMenuLabel>Format File</DropdownMenuLabel>
+                                    <DropdownMenuSeparator/>
+                                    <Button variant={"outline"} onClick={() => downloadCSV(data)}>CSV</Button>
+                                    <Button variant={"outline"}
+                                            onClick={() => downloadExcel(data)}>Excel</Button>
+                                    <Button variant={"outline"} onClick={() => generatePDF(data)}>PDF</Button>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
                         </div>
+
                     </div>
                     <Table className={"rounded-xl"}>
                         <TableHeader className={"bg-fountain-blue-300"}>
@@ -129,12 +318,17 @@ export function DataTable({columns, data, project}) {
                                             </TableHead>
                                         );
                                     })}
-                                    <TableHead
-                                        className="sticky sm:right-0 bg-fountain-blue-300 text-white"
-                                        style={{ zIndex: 1 }}
-                                    >
-                                        Aksi
-                                    </TableHead>
+                                    {
+                                        role !== 'user' && (
+                                            <TableHead
+                                                className="sticky sm:right-0 bg-fountain-blue-300 text-white"
+                                                style={{zIndex: 1}}
+                                            >
+                                                Aksi
+                                            </TableHead>
+                                        )
+                                    }
+
                                 </TableRow>
                             ))}
                         </TableHeader>
@@ -173,14 +367,19 @@ export function DataTable({columns, data, project}) {
                                                 </TableCell>
                                             ))}
                                             {/* Kolom terakhir dengan posisi sticky */}
-                                            <TableCell
-                                                className="sticky sm:right-0 bg-white flex gap-2"
-                                                onClick={(e) => e.stopPropagation()}
-                                                style={{ zIndex: 1 }}
-                                            >
-                                                <EditAlatKerjaDialog data={row.original} project={project}/>
-                                                <DeleteAlatKerjaDialog data={row}/>
-                                            </TableCell>
+
+                                            {
+                                                role !== 'user' && (
+                                                    <TableCell
+                                                        className="sticky sm:right-0 bg-white flex gap-2"
+                                                        onClick={(e) => e.stopPropagation()}
+                                                        style={{zIndex: 1}}
+                                                    >
+                                                        <EditAlatKerjaDialog data={row.original} project={project}/>
+                                                        <DeleteAlatKerjaDialog data={row}/>
+                                                    </TableCell>
+                                                )
+                                            }
                                         </TableRow>
                                     );
                                 })

@@ -40,8 +40,9 @@ import {
     DropdownMenuLabel, DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "@/Components/ui/dropdown-menu.jsx";
+import * as XLSX from 'xlsx';
 
-export function DataTable({columns, data,category}) {
+export function DataTable({columns, data, category, role}) {
     const [rowSelection, setRowSelection] = useState({})
     const [columnVisibility, setColumnVisibility] = useState({})
     const [columnFilters, setColumnFilters] = useState([])
@@ -85,7 +86,7 @@ export function DataTable({columns, data,category}) {
         const currentDate = new Date().toLocaleDateString('id-ID').replace(/\//g, '-');
 
         // Create a Blob and download it
-        const blob = new Blob([csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const blob = new Blob([csvRows.join('\n')], {type: 'text/csv;charset=utf-8;'});
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.setAttribute('href', url);
@@ -105,23 +106,122 @@ export function DataTable({columns, data,category}) {
         doc.save('data.pdf');
     };
 
+
+
+    const downloadExcel = (data) => {
+
+        const dataArray = Object.values(data);
+
+        if (!Array.isArray(dataArray)) {
+            console.error('Error: dataArray is not an array!');
+            return;
+        }
+
+        // Tentukan urutan kolom yang diinginkan
+        const columnOrder = [
+            'Nama Pekerjaan',
+            'Tanggal Efektif Kontrak',
+            'Jenis Kontrak',
+            'Jangka Waktu (Bulan)',
+            'Jumlah Tenaga Kerja (Fix Cost)',
+            'Realisasi di Lapangan',
+            'Nilai Kontrak (Inc. PPN)',
+            'Akhir Kontrak',
+            'Sisa Jangka Waktu (Bulan)',
+            'Keterangan',
+            'Kategori',
+            'Dibuat Pada',
+            'Diperbarui Pada',
+        ];
+
+        const mappings = {
+            nama_pekerjaan: "Nama Pekerjaan",
+            tanggal_efektif_kontrak: "Tanggal Efektif Kontrak",
+            jenis_kontrak: "Jenis Kontrak",
+            jangka_waktu_bulan: "Jangka Waktu (Bulan)",
+            jumlah_tenaga_kerja_sesuai_kontrak_fix_cost: "Jumlah Tenaga Kerja (Fix Cost)",
+            realisasi_di_lapangan: "Realisasi di Lapangan",
+            nilai_kontrak_inc_ppn: "Nilai Kontrak (Inc. PPN)",
+            akhir_kontrak: "Akhir Kontrak",
+            status_sisa_jangka_waktu_kontrak_bulan: "Sisa Jangka Waktu (Bulan)",
+            keterangan: "Keterangan",
+            created_at: "Dibuat Pada",
+            updated_at: "Diperbarui Pada",
+            category_name: "Kategori",
+        };
+
+        const transformedData = dataArray.map(item => {
+            const result = {};
+            for (const key in item) {
+                if (mappings[key]) {
+                    result[mappings[key]] = item[key];
+                }
+            }
+            return result;
+        });
+
+        // Reorder the data based on the columnOrder
+        const reorderedData = transformedData.map(item => {
+            const reorderedItem = {};
+            columnOrder.forEach(col => {
+                const key = Object.keys(mappings).find(k => mappings[k] === col);
+                if (key) {
+                    reorderedItem[col] = item[mappings[key]];
+                }
+            });
+            return reorderedItem;
+        });
+
+        // Membuat worksheet
+        const worksheet = XLSX.utils.json_to_sheet(reorderedData);
+
+        // Menambahkan styling pada header
+        const headerRange = XLSX.utils.decode_range(worksheet['!ref']);
+        for (let C = headerRange.s.c; C <= headerRange.e.c; ++C) {
+            const cellAddress = XLSX.utils.encode_cell({ r: 0, c: C });
+            const cell = worksheet[cellAddress];
+            if (cell) {
+                cell.s = {
+                    font: { bold: true, color: { rgb: "FFFFFF" }, sz: 12 },
+                    fill: { fgColor: { rgb: "4F81BD" } }, // Background color
+                    alignment: { horizontal: "center", vertical: "center" },
+                };
+            }
+        }
+
+        // Menentukan lebar kolom
+        worksheet['!cols'] = columnOrder.map(() => ({ wch: 20 }));
+
+        // Membuat workbook
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Data');
+
+        // Menentukan nama file
+        const currentDate = new Date().toLocaleDateString('id-ID').replace(/\//g, '-');
+        const fileName = `Data Proyek PLN Nusa Daya Maluku - ${currentDate}.xlsx`;
+
+        // Mengunduh file Excel
+        XLSX.writeFile(workbook, fileName);
+    };
+
+
     const generatePDF = (data) => {
         // console.log(data); // Memeriksa data yang diterima
-        const doc = new jsPDF({ orientation: "landscape" });
+        const doc = new jsPDF({orientation: "landscape"});
 
         const columns = [
-            { header: 'No', dataKey: 'no' },
-            { header: 'Nama Pekerjaan', dataKey: 'nama_pekerjaan' },
-            { header: 'Kategori', dataKey: 'categoryLabel' },
-            { header: 'Tanggal Efektif', dataKey: 'tanggal_efektif_kontrak' },
-            { header: 'Jenis Kontrak', dataKey: 'jenis_kontrak' },
-            { header: 'Jangka Waktu (Bulan)', dataKey: 'jangka_waktu_bulan' },
-            { header: 'Jumlah Tenaga Kerja (FIX COST)', dataKey: 'jumlah_tenaga_kerja_sesuai_kontrak_fix_cost' },
-            { header: 'Realisasi di Lapangan', dataKey: 'realisasi_di_lapangan' },
-            { header: 'Nilai Kontrak (Inc PPN)', dataKey: 'nilai_kontrak_inc_ppn' },
-            { header: 'Akhir Kontrak', dataKey: 'akhir_kontrak' },
-            { header: 'Status Sisa Jangka Waktu (Bulan)', dataKey: 'status_sisa_jangka_waktu_kontrak_bulan' },
-            { header: 'Keterangan', dataKey: 'keterangan' },
+            {header: 'No', dataKey: 'no'},
+            {header: 'Nama Pekerjaan', dataKey: 'nama_pekerjaan'},
+            {header: 'Kategori', dataKey: 'categoryLabel'},
+            {header: 'Tanggal Efektif', dataKey: 'tanggal_efektif_kontrak'},
+            {header: 'Jenis Kontrak', dataKey: 'jenis_kontrak'},
+            {header: 'Jangka Waktu (Bulan)', dataKey: 'jangka_waktu_bulan'},
+            {header: 'Jumlah Tenaga Kerja (FIX COST)', dataKey: 'jumlah_tenaga_kerja_sesuai_kontrak_fix_cost'},
+            {header: 'Realisasi di Lapangan', dataKey: 'realisasi_di_lapangan'},
+            {header: 'Nilai Kontrak (Inc PPN)', dataKey: 'nilai_kontrak_inc_ppn'},
+            {header: 'Akhir Kontrak', dataKey: 'akhir_kontrak'},
+            {header: 'Status Sisa Jangka Waktu (Bulan)', dataKey: 'status_sisa_jangka_waktu_kontrak_bulan'},
+            {header: 'Keterangan', dataKey: 'keterangan'},
         ];
 
         const formatRupiah = (value) => {
@@ -203,15 +303,21 @@ export function DataTable({columns, data,category}) {
                             </Select>
                         </div>
                         <div className="flex items-center space-x-2 mb-3 w-fit max-sm:grid max-sm:space-y-2">
-                            <TambahProyekDialog category={category}/>
+                            {
+                                role !== 'user' && (
+                                    <TambahProyekDialog category={category}/>
+                                )
+                            }
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button variant="outline">Download Data</Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className="w-fit grid gap-2">
                                     <DropdownMenuLabel>Format File</DropdownMenuLabel>
-                                    <DropdownMenuSeparator />
+                                    <DropdownMenuSeparator/>
                                     <Button variant={"outline"} onClick={() => downloadCSV(data)}>CSV</Button>
+                                    <Button variant={"outline"}
+                                            onClick={() => downloadExcel(data)}>Excel</Button>
                                     <Button variant={"outline"} onClick={() => generatePDF(data)}>PDF</Button>
                                 </DropdownMenuContent>
                             </DropdownMenu>
@@ -236,12 +342,16 @@ export function DataTable({columns, data,category}) {
                                             </TableHead>
                                         );
                                     })}
-                                    <TableHead
-                                        className="sticky sm:right-0 bg-fountain-blue-300 text-white"
-                                        style={{ zIndex: 1 }}
-                                    >
-                                        Aksi
-                                    </TableHead>
+                                    {
+                                        role !== 'user' && (
+                                            <TableHead
+                                                className="sticky sm:right-0 bg-fountain-blue-300 text-white"
+                                                style={{zIndex: 1}}
+                                            >
+                                                Aksi
+                                            </TableHead>
+                                        )
+                                    }
                                 </TableRow>
                             ))}
                         </TableHeader>
@@ -260,14 +370,19 @@ export function DataTable({columns, data,category}) {
                                             </TableCell>
                                         ))}
                                         {/* Kolom terakhir dengan posisi sticky */}
-                                        <TableCell
-                                            className="sm:sticky right-0 bg-white flex gap-2"
-                                            style={{ zIndex: 1 }}
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            <EditProyekDialog data={row.original} />
-                                            <DeleteProyekDialog data={row} />
-                                        </TableCell>
+                                        {
+                                            role !== 'user' && (
+                                                <TableCell
+                                                    className="sm:sticky right-0 bg-white flex gap-2"
+                                                    style={{zIndex: 1}}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    <EditProyekDialog data={row.original}/>
+                                                    <DeleteProyekDialog data={row}/>
+                                                </TableCell>
+                                            )
+                                        }
+
                                     </TableRow>
                                 ))
                             ) : (

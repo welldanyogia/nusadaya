@@ -6,11 +6,12 @@ import {
     SquarePen,
     LayoutGrid,
     LineChartIcon,
-    BoxesIcon, Monitor
+    BoxesIcon,
+    Monitor, UserPlus
 } from 'lucide-react';
 
-export function getMenuList(pathname) {
-    return [
+export function getMenuList(pathname, user) {
+    const menuList = [
         {
             groupLabel: "",
             menus: [
@@ -23,18 +24,6 @@ export function getMenuList(pathname) {
                 }
             ]
         },
-        // {
-        //     groupLabel: "Transaction",
-        //     menus: [
-        //         {
-        //             href: "/dashboard/transactions",
-        //             label: "Transactions",
-        //             active: pathname.includes("/transactions"),
-        //             icon: LineChartIcon,
-        //             submenus: []
-        //         },
-        //     ]
-        // },
         {
             groupLabel: "Monitoring",
             menus: [
@@ -60,26 +49,26 @@ export function getMenuList(pathname) {
                             active: pathname === "/admin/dashboard/tenaga-kerja"
                         }
                     ]
-                },
+                }
             ]
-        },
-        // {
-        //     groupLabel: "Configuration",
-        //     menus: [
-        //         {
-        //             href: "",
-        //             label: "Configuration",
-        //             active: pathname.includes("/digiflazz"),
-        //             icon: Settings,
-        //             submenus: [
-        //                 {
-        //                     href: "/dashboard/digiflazz",
-        //                     label: "Digiflazz",
-        //                     active: pathname === "/dashboard/digiflazz"
-        //                 },
-        //             ]
-        //         }
-        //     ]
-        // }
+        }
     ];
+
+    // Add "Tambah Admin/User" menu for non-user roles
+    if (user.role !== 'user') {
+        menuList.push({
+            groupLabel: "Tambah Admin/User",
+            menus: [
+                {
+                    href: "/admin/dashboard/user-management",
+                    label: "Tambah Admin/User",
+                    active: pathname.includes("/admin/dashboard/user-management"),
+                    icon: UserPlus ,
+                    submenus: []
+                }
+            ]
+        });
+    }
+
+    return menuList;
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Monitoring\ProyekController;
 use App\Http\Controllers\Admin\Monitoring\TenagaKerjaController;
 use App\Http\Controllers\Admin\SuperAdminDashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard/proyek', [ProyekController::class, 'index'])->name('proyek.index');
     Route::get('/admin/dashboard/alat-kerja', [AlatKerjaController::class, 'index'])->name('alatkerja.index');
     Route::get('/admin/dashboard/tenaga-kerja', [TenagaKerjaController::class, 'index'])->name('tenagakerja.index');
+    Route::get('/admin/dashboard/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
+    Route::post('/admin/dashboard/user-management/store', [UserManagementController::class, 'store'])->name('user-management.store');
+    Route::post('/admin/dashboard/user-management/update/{id}', [UserManagementController::class, 'update'])->name('user-management.update');
+    Route::delete('/admin/dashboard/user-management/delete/{id}', [UserManagementController::class, 'destroy'])->name('user-management.delete');
 
 //    Add Category
     Route::post('/admin/monitoring/proyek/category', [ProyekController::class, 'storeCategory']);

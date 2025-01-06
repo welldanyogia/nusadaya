@@ -13,6 +13,7 @@ import {Label} from "@/Components/ui/label"
 import {useEffect, useState} from "react";
 import {router, useForm} from "@inertiajs/react";
 import {ProjectComboBox} from "@/Components/Table/AlatKerja/ProjectComboBox.jsx";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/Components/ui/select.jsx";
 
 export function EditTenagaKerjaDialog({dataTK,projects}) {
     const [loading, setLoading] = useState(false);
@@ -26,8 +27,48 @@ export function EditTenagaKerjaDialog({dataTK,projects}) {
         project_id: dataTK.project_id,
         unit_pln: dataTK.unit_pln,
         penempatan: dataTK.penempatan,
-        no_spk: dataTK.no_spk
+        no_spk: dataTK.no_spk,
+        agama: dataTK.agama,
+        usia: dataTK.usia,
+        sisa_masa_pensiun: dataTK.sisa_masa_pensiun,
+        kelompok: dataTK.kelompok,
+        region: dataTK.region,
+        cabang: dataTK.cabang,
+        kategori: dataTK.kategori,
+        status: dataTK.status,
+        tgl_masuk: dataTK.tgl_masuk,
+        tgl_mulai_bekerja: dataTK.tgl_mulai_bekerja,
+        tgl_berhenti: dataTK.tgl_berhenti,
+        no_kontrak: dataTK.no_kontrak,
+        tgl_awal_kontrak: dataTK.tgl_awal_kontrak,
+        tgl_akhir_kontrak: dataTK.tgl_akhir_kontrak,
+        jenis_kelamin: dataTK.jenis_kelamin,
+        pendidikan: dataTK.pendidikan,
+        gol_darah: dataTK.gol_darah,
+        status_kawin: dataTK.status_kawin,
+        telepon: dataTK.telepon,
+        email: dataTK.email,
+        alamat_ktp: dataTK.alamat_ktp,
+        alamat_domisili: dataTK.alamat_domisili,
+        no_ktp: dataTK.no_ktp,
+        no_kk: dataTK.no_kk,
+        nama_ibu_kandung: dataTK.nama_ibu_kandung,
+        baju: dataTK.baju,
+        celana: dataTK.celana,
+        sepatu: dataTK.sepatu,
+        npwp: dataTK.npwp,
+        no_bpjs_kes: dataTK.no_bpjs_kes,
+        va_bpjs_kes: dataTK.va_bpjs_kes,
+        status_bpjs_kes: dataTK.status_bpjs_kes,
+        ket_bpjs_kes: dataTK.ket_bpjs_kes,
+        no_bpjs_tk: dataTK.no_bpjs_tk,
+        va_bpjs_tk: dataTK.va_bpjs_tk,
+        status_bpjs_tk: dataTK.status_bpjs_tk,
+        ket_bpjs_tk: dataTK.ket_bpjs_tk,
+        wajib_sertifikasi: dataTK.wajib_sertifikasi,
+        jurusan: dataTK.jurusan,
     });
+
 
     // Handler untuk submit form
     const handleSubmit = (e) => {
@@ -152,6 +193,441 @@ export function EditTenagaKerjaDialog({dataTK,projects}) {
                                 className="col-span-3 text-neutral-600"
                             />
                             {errors.no_spk && <span className="text-red-500">{errors.no_spk}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="agama" className="text-right">Agama</Label>
+                            <Input
+                                id="agama"
+                                value={data.agama}
+                                onChange={(e) => setData("agama", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.agama && <span className="text-red-500 col-span-4 text-xs">{errors.agama}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="kelompok" className="text-right">Kelompok</Label>
+                            <Input
+                                id="kelompok"
+                                value={data.kelompok}
+                                onChange={(e) => setData("kelompok", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.kelompok &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.kelompok}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="region" className="text-right capitalize">region</Label>
+                            <Input
+                                id="region"
+                                value={data.region}
+                                onChange={(e) => setData("region", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.region &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.region}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="cabang" className="text-right capitalize">cabang</Label>
+                            <Input
+                                id="cabang"
+                                value={data.cabang}
+                                onChange={(e) => setData("cabang", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.cabang &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.cabang}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="kategori" className="text-right capitalize">kategori</Label>
+                            <Input
+                                id="kategori"
+                                value={data.kategori}
+                                onChange={(e) => setData("kategori", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.kategori &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.kategori}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="status" className="text-right capitalize">status</Label>
+                            <Input
+                                id="status"
+                                value={data.status}
+                                onChange={(e) => setData("status", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.status &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.status}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="tgl_masuk" className="text-right capitalize">Tanggal Masuk</Label>
+                            <Input
+                                type={'date'}
+                                id="tgl_masuk"
+                                value={data.tgl_masuk}
+                                onChange={(e) => setData("tgl_masuk", e.target.value)}
+                                className="col-span-3 w-fit text-neutral-600"
+                            />
+                            {errors.tgl_masuk &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.tgl_masuk}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="tgl_mulai_bekerja" className="text-right capitalize">Tanggal Mulai
+                                Bekerja</Label>
+                            <Input
+                                type={'date'}
+                                id="tgl_mulai_bekerja"
+                                value={data.tgl_mulai_bekerja}
+                                onChange={(e) => setData("tgl_mulai_bekerja", e.target.value)}
+                                className="col-span-3 w-fit text-neutral-600"
+                            />
+                            {errors.tgl_mulai_bekerja &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.tgl_mulai_bekerja}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="no_kontrak" className="text-right capitalize">No Kontrak</Label>
+                            <Input
+                                id="no_kontrak"
+                                value={data.no_kontrak}
+                                onChange={(e) => setData("no_kontrak", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.no_kontrak &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.no_kontrak}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="tgl_awal_kontrak" className="text-right capitalize">Tanggal Awal
+                                Kontrak</Label>
+                            <Input
+                                type={'date'}
+                                id="tgl_awal_kontrak"
+                                value={data.tgl_awal_kontrak}
+                                onChange={(e) => setData("tgl_awal_kontrak", e.target.value)}
+                                className="col-span-3 w-fit text-neutral-600"
+                            />
+                            {errors.tgl_awal_kontrak &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.tgl_awal_kontrak}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="tgl_akhir_kontrak" className="text-right capitalize">Tanggal Akhir
+                                Kontrak</Label>
+                            <Input
+                                type={'date'}
+                                id="tgl_akhir_kontrak"
+                                value={data.tgl_akhir_kontrak}
+                                onChange={(e) => setData("tgl_akhir_kontrak", e.target.value)}
+                                className="col-span-3 w-fit text-neutral-600"
+                            />
+                            {errors.tgl_akhir_kontrak &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.tgl_akhir_kontrak}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="jenis_kelamin" className="text-right capitalize">Jenis Kelamin</Label>
+                            <Input
+                                id="jenis_kelamin"
+                                value={data.jenis_kelamin}
+                                onChange={(e) => setData("jenis_kelamin", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.jenis_kelamin &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.jenis_kelamin}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="pendidikan" className="text-right capitalize">Pendidikan</Label>
+                            <Input
+                                id="pendidikan"
+                                value={data.pendidikan}
+                                onChange={(e) => setData("pendidikan", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.pendidikan &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.pendidikan}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="jurusan" className="text-right capitalize">jurusan</Label>
+                            <Input
+                                id="jurusan"
+                                value={data.jurusan}
+                                onChange={(e) => setData("jurusan", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.jurusan &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.jurusan}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="gol_darah" className="text-right capitalize">golongan darah</Label>
+                            <Input
+                                id="gol_darah"
+                                value={data.gol_darah}
+                                onChange={(e) => setData("gol_darah", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.gol_darah &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.gol_darah}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="status_kawin" className="text-right capitalize">Status Kawin</Label>
+                            <Input
+                                id="status_kawin"
+                                value={data.status_kawin}
+                                onChange={(e) => setData("status_kawin", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.status_kawin &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.status_kawin}</span>}
+                        </div>
+                        {/*<div className="grid grid-cols-4 items-center gap-4">*/}
+                        {/*    <Label htmlFor="status_kawin" className="text-right capitalize">Status Kawin</Label>*/}
+                        {/*    <Input*/}
+                        {/*        id="status_kawin"*/}
+                        {/*        value={data.status_kawin}*/}
+                        {/*        onChange={(e) => setData("status_kawin", e.target.value)}*/}
+                        {/*        className="col-span-3 text-neutral-600"*/}
+                        {/*    />*/}
+                        {/*    {errors.status_kawin &&*/}
+                        {/*        <span className="text-red-500 col-span-4 text-xs">{errors.status_kawin}</span>}*/}
+                        {/*</div>*/}
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="telepon" className="text-right capitalize">Telepon</Label>
+                            <Input
+                                type={'tel'}
+                                onInput={(e) => {
+                                    // Menghapus karakter non-digit
+                                    e.target.value = e.target.value.replace(/\D/g, "");
+                                }}
+                                id="telepon"
+                                value={data.telepon}
+                                onChange={(e) => setData("telepon", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                                pattern="^\d{10,}$"
+                            />
+                            {errors.telepon &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.telepon}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="email" className="text-right capitalize">email</Label>
+                            <Input
+                                type={'email'}
+                                id="email"
+                                value={data.email}
+                                onChange={(e) => setData("email", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.email &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.email}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="alamat_ktp" className="text-right capitalize">alamat ktp</Label>
+                            <Input
+                                id="alamat_ktp"
+                                value={data.alamat_ktp}
+                                onChange={(e) => setData("alamat_ktp", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.alamat_ktp &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.alamat_ktp}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="alamat_domisili" className="text-right capitalize">alamat domisili</Label>
+                            <Input
+                                id="alamat_domisili"
+                                value={data.alamat_domisili}
+                                onChange={(e) => setData("alamat_domisili", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.alamat_domisili &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.alamat_domisili}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="no_ktp" className="text-right capitalize">no KTP</Label>
+                            <Input
+                                type={'number'}
+                                id="no_ktp"
+                                value={data.no_ktp}
+                                onChange={(e) => setData("no_ktp", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.no_ktp &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.no_ktp}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="no_kk" className="text-right capitalize">no KK</Label>
+                            <Input
+                                type={'number'}
+                                id="no_kk"
+                                value={data.no_kk}
+                                onChange={(e) => setData("no_kk", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.no_kk &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.no_kk}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="nama_ibu_kandung" className="text-right capitalize">Nama Ibu Kandung</Label>
+                            <Input
+                                id="nama_ibu_kandung"
+                                value={data.nama_ibu_kandung}
+                                onChange={(e) => setData("nama_ibu_kandung", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.nama_ibu_kandung &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.nama_ibu_kandung}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="baju" className="text-right capitalize">Ukuran Baju</Label>
+                            <Input
+                                id="baju"
+                                value={data.baju}
+                                onChange={(e) => setData("baju", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.baju &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.baju}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="celana" className="text-right capitalize">Ukuran celana</Label>
+                            <Input
+                                id="celana"
+                                value={data.celana}
+                                onChange={(e) => setData("celana", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.celana &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.celana}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="sepatu" className="text-right capitalize">Ukuran sepatu</Label>
+                            <Input
+                                id="sepatu"
+                                value={data.sepatu}
+                                onChange={(e) => setData("sepatu", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.sepatu &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.sepatu}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="npwp" className="text-right capitalize">NPWP</Label>
+                            <Input
+                                id="npwp"
+                                value={data.npwp}
+                                onChange={(e) => setData("npwp", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.npwp &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.npwp}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="no_bpjs_kes" className="text-right capitalize">No BPJS Kesehatan</Label>
+                            <Input
+                                id="no_bpjs_kes"
+                                value={data.no_bpjs_kes}
+                                onChange={(e) => setData("no_bpjs_kes", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.no_bpjs_kes &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.no_bpjs_kes}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="va_bpjs_kes" className="text-right capitalize">VA BPJS Kesehatan</Label>
+                            <Input
+                                id="va_bpjs_kes"
+                                value={data.va_bpjs_kes}
+                                onChange={(e) => setData("va_bpjs_kes", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.va_bpjs_kes &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.va_bpjs_kes}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="status_bpjs_kes" className="text-right capitalize">status BPJS
+                                Kesehatan</Label>
+                            <Input
+                                id="status_bpjs_kes"
+                                value={data.status_bpjs_kes}
+                                onChange={(e) => setData("status_bpjs_kes", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.status_bpjs_kes &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.status_bpjs_kes}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="ket_bpjs_kes" className="text-right capitalize">ket BPJS
+                                Kesehatan</Label>
+                            <Input
+                                id="ket_bpjs_kes"
+                                value={data.ket_bpjs_kes}
+                                onChange={(e) => setData("ket_bpjs_kes", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.ket_bpjs_kes &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.ket_bpjs_kes}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="no_bpjs_tk" className="text-right capitalize">No BPJS
+                                Ketenagakerjaan</Label>
+                            <Input
+                                id="no_bpjs_tk"
+                                value={data.no_bpjs_tk}
+                                onChange={(e) => setData("no_bpjs_tk", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.no_bpjs_tk &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.no_bpjs_tk}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="va_bpjs_tk" className="text-right capitalize">VA BPJS
+                                Ketenagakerjaan</Label>
+                            <Input
+                                id="va_bpjs_tk"
+                                value={data.va_bpjs_tk}
+                                onChange={(e) => setData("va_bpjs_tk", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.va_bpjs_tk &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.va_bpjs_tk}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="status_bpjs_tk" className="text-right capitalize">status BPJS
+                                Ketenagakerjaan</Label>
+                            <Input
+                                id="status_bpjs_tk"
+                                value={data.status_bpjs_tk}
+                                onChange={(e) => setData("status_bpjs_tk", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.status_bpjs_tk &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.status_bpjs_tk}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="ket_bpjs_tk" className="text-right capitalize">ket BPJS
+                                Ketenagakerjaan</Label>
+                            <Input
+                                id="ket_bpjs_tk"
+                                value={data.ket_bpjs_tk}
+                                onChange={(e) => setData("ket_bpjs_tk", e.target.value)}
+                                className="col-span-3 text-neutral-600"
+                            />
+                            {errors.ket_bpjs_tk &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.ket_bpjs_tk}</span>}
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="wajib_sertifikasi" className="text-right capitalize">Wajib
+                                Sertifikasi</Label>
+                            <Select
+                                value={data.wajib_sertifikasi===1}
+                                onValueChange={(value) => setData("wajib_sertifikasi", value === "true")}
+                            >
+                                <SelectTrigger className="col-span-3 text-neutral-600">
+                                    <SelectValue placeholder="Pilih Ya/Tidak"/>
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value={true}>Ya</SelectItem>
+                                    <SelectItem value={false}>Tidak</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            {errors.wajib_sertifikasi &&
+                                <span className="text-red-500 col-span-4 text-xs">{errors.wajib_sertifikasi}</span>}
                         </div>
                     </div>
                     <DialogFooter>

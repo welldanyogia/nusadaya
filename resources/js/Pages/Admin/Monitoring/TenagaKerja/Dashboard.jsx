@@ -27,7 +27,7 @@ export default function Dashboard({auth, employees, projects}) {
                     </CardContent>
                 </Card>
                 <div className="max-w-7xl mx-auto -mt-28 sm:px-6 lg:px-8">
-                    <TableTK data={employees} projects={projects}/>
+                    <TableTK data={employees} projects={projects} role={auth.user.role}/>
                 </div>
             </div>
         </AuthenticatedAdmin>

@@ -7,7 +7,7 @@ import Table from "@/Components/Table/Proyek/DetailProyek/AlatKerja/Table.jsx";
 import {useState} from "react";
 import TableTK from "@/Components/Table/Proyek/DetailProyek/TenagaKerja/TableTK.jsx";
 
-export default function DetailProyek({auth, project, countKeterangan}) {
+export default function DetailProyek({auth, project,projects ,countKeterangan}) {
     const [selectedValue, setSelectedValue] = useState("alat-kerja");
 
     const handleChange = (value) => {
@@ -160,7 +160,7 @@ export default function DetailProyek({auth, project, countKeterangan}) {
                                     Alat Kerja {capitalizeRole(project.nama_pekerjaan)}
                                 </CardHeader>
                                 <CardContent>
-                                    <Table data={project.alat_kerjas} project={project}/>
+                                    <Table data={project.alat_kerjas} project={project} role={auth.user.role}/>
                                 </CardContent>
                             </Card>
                         ) : (
@@ -170,7 +170,7 @@ export default function DetailProyek({auth, project, countKeterangan}) {
                                 </CardHeader>
                                 <CardContent>
                                     {/* Display Tenaga Kerja content here */}
-                                    <TableTK data={project.employees}/>
+                                    <TableTK data={project.employees} projects={projects} role={auth.user.role} project={project}/>
                                 </CardContent>
                             </Card>
                         )

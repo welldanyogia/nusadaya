@@ -17,6 +17,7 @@ class DetailProyekController extends Controller
     public function index($id)
     {
         $project = Project::with('category','alatKerjas','employees')->find($id);
+        $projects = Project::all();
 
         $countKeterangan = [
             'Normal' => 0,
@@ -69,6 +70,7 @@ class DetailProyekController extends Controller
         }
         return Inertia::render('Admin/Monitoring/Proyek/Detail/DetailProyek', [
             'project' => $project,
+            'projects' => $projects,
             'countKeterangan' => $countKeterangan,
         ]);
     }
