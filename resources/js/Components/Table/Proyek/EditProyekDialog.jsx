@@ -34,7 +34,7 @@ export function EditProyekDialog({data}) {
         jangka_waktu_bulan: data.jangka_waktu_bulan,
         jumlah_tenaga_kerja_sesuai_kontrak_fix_cost: data.jumlah_tenaga_kerja_sesuai_kontrak_fix_cost,
         realisasi_di_lapangan: data.realisasi_di_lapangan,
-        nilai_kontrak_inc_ppn: data.nilai_kontrak_inc_ppn,
+        nilai_kontrak_inc_ppn: parseInt(data.nilai_kontrak_inc_ppn),
         akhir_kontrak: data.akhir_kontrak,
         status_sisa_jangka_waktu_kontrak_bulan: data.status_sisa_jangka_waktu_kontrak_bulan,
         keterangan: data.keterangan,
@@ -236,7 +236,7 @@ export function EditProyekDialog({data}) {
                             <CategoryComboBox
                                 category={category}
                                 required={true}
-                                valueCat={formData?.category.label || ""}
+                                valueCat={formData?.category.value || ""}
                                 setCategory={handleCategoryChange}
                             />
                         </div>
@@ -289,6 +289,18 @@ export function EditProyekDialog({data}) {
                                    onChange={handleInputChange}
                                    type={"number"}
                                    className="col-span-3 text-neutral-600"/>
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="nilai_kontrak_inc_ppn" className="text-right">Nilai Kontrak (Inc
+                                PPN)</Label>
+                            <Input
+                                id="nilai_kontrak_inc_ppn"
+                                name="nilai_kontrak_inc_ppn"
+                                type="number"
+                                value={formData.nilai_kontrak_inc_ppn}
+                                onChange={handleChange}
+                                className="col-span-3 text-neutral-600"
+                            />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="akhir_kontrak" className="text-right">

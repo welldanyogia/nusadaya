@@ -28,7 +28,6 @@ export default function Dashboard({auth,users}) {
         e.preventDefault();
 
         // Debugging: Log data sebelum dikirim
-        console.log("Data yang akan dikirim:", data);
 
         post(route('user-management.store'), {
             onStart: () => {
@@ -53,8 +52,6 @@ export default function Dashboard({auth,users}) {
             },
         });
     };
-
-    console.log(users)
 
 
     return (

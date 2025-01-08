@@ -27,6 +27,7 @@ export function CategoryComboBox({ category, setCategory, setID, valueCat }) {
     const [inputValue, setInputValue] = React.useState("")
     const [loading, setLoading] = React.useState(false) // Loading state
 
+
     // Function to fetch categories from the API
     const fetchCategories = async () => {
         try {

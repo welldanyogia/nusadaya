@@ -58,7 +58,7 @@ return [
         'gcs' => [
             'driver' => 'gcs',
             'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'soy-involution-431208-g4'),
-            'key_file' => env('GOOGLE_CLOUD_KEY_FILE', 'storage/app/soy-involution-431208-g4-c1c10ddd4aef.json'), // Path ke file JSON credentials Anda
+            'key_file' => env('GOOGLE_CLOUD_KEY_FILE', 'storage/app/soy-involution-431208-g4-a57ed668a7d1.json'), // Path ke file JSON credentials Anda
             'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'webrana-test'),
             'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // opsional, jika ada prefix
             'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', null), // opsional, jika menggunakan custom URI

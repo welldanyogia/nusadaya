@@ -9,18 +9,15 @@ import { ContentLayout } from "@/Components/admin-panel/ContentLayout.jsx";
 import CustomBreadcrumb from "@/Components/CustomBreadCrumb.jsx";
 
 export default function AuthenticatedAdmin({ user, header, children,title,className }) {
-    const { url } = usePage().props; // Get the current URL from Inertia's page props
+    const { url: inertiaUrl } = usePage().props; // Get the current URL from Inertia's page props
     const [pageTitle, setPageTitle] = useState(title); // Default title
 
+    const currentUrl = inertiaUrl || window.location.pathname;
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     useEffect(() => {
-        // router.reload()
-        // Use url from usePage props or fallback to window.location.pathname
-        const currentUrl = url || window.location.pathname;
-
         if (currentUrl) {
             const pathSegments = currentUrl.split("/").filter(Boolean); // Split and filter path segments
             const lastPathSegment = pathSegments[pathSegments.length - 1]; // Get the last path segment
@@ -29,12 +26,14 @@ export default function AuthenticatedAdmin({ user, header, children,title,classN
             setPageTitle(title);
             document.title = title; // Update document title
         }
-    }, [url]);
+    }, [currentUrl]);
+
+    console.log("Auth URL : ",currentUrl)
 
     return (
         <AdminPanelLayout user={user}>
             <ContentLayout title={title} user={user} className={className}>
-                {/*<CustomBreadcrumb url={url}/>*/}
+                <CustomBreadcrumb url={currentUrl}/>
                 {children}
             </ContentLayout>
         </AdminPanelLayout>

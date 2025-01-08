@@ -59,13 +59,14 @@ export function CollapseMenuButton({ icon: Icon, label, active, submenus, isOpen
                 </Button>
             </CollapsibleTrigger>
             <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-                {submenus.map(({ href, label, active }, index) => (
+                {submenus.map(({ href, label, active,rout }, index) => (
                     <Button
                         key={index}
                         variant={active ? "secondary" : "ghost"}
                         className={`w-full justify-start h-10 mb-1 hover:bg-[#B6D7DE] ${active ? "bg-fountain-blue-500/60 text-white" : ""}`}
                         onClick={()=>{
-                            router.get(href)
+                            console.log(rout)
+                            router.get(route(rout))
                         }}
                         // asChild
                     >
@@ -126,9 +127,9 @@ export function CollapseMenuButton({ icon: Icon, label, active, submenus, isOpen
                     {label}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {submenus.map(({ href, label }, index) => (
+                {submenus.map(({ href, label,route }, index) => (
                     <DropdownMenuItem key={index} onClick={()=>{
-                        router.get(href)
+                        router.get(route(route))
                     }} asChild>
                         {/*<a href={href} className="cursor-pointer">*/}
                             <p className="max-w-[180px] truncate">{label}</p>

@@ -41,13 +41,13 @@ Route::get('/dashboard', function () {
 
     // Check the user's role and redirect accordingly
     if ($user->role === 'superadmin') {
-        return redirect()->route('superadmin.dashboard');
+        return redirect()->route('superadmin.dashboard')->with('refresh',true);
     } elseif ($user->role === 'admin') {
-        return redirect()->route('superadmin.dashboard');
+        return redirect()->route('superadmin.dashboard')->with('refresh',true);
     } elseif ($user->role === 'user') {
-        return redirect()->route('user.dashboard');
+        return redirect()->route('superadmin.dashboard')->with('refresh',true);
     } else {
-        return redirect()->route('dashboard'); // Default dashboard if no specific role
+        return redirect()->route('dashboard')->with('refresh',true); // Default dashboard if no specific role
     }
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware('auth')->group(function () {
@@ -88,7 +88,7 @@ Route::middleware('auth')->group(function () {
 //    Detail Project
     Route::get('/admin/monitoring/proyek/{id}', [DetailProyekController::class, 'index'])->name('detailproyek.index');
 //    Detail Tenaga Kerja
-    Route::get('/admin/monitoring/tenagakerja/{id}', [DetailTenagaKerjaController::class, 'index'])->name('detailtenagakerja.index');
+    Route::get('/admin/monitoring/tenaga-kerja/{id}', [DetailTenagaKerjaController::class, 'index'])->name('detailtenagakerja.index');
 //    Detail Alat Kerja
     Route::get('/admin/monitoring/alat-kerja/{id}', [DetailAlatKerjaController::class, 'index'])->name('detailalatkerja.index');
 //    Update Alat Kerja

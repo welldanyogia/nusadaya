@@ -17,6 +17,7 @@ export function getMenuList(pathname, user) {
             menus: [
                 {
                     href: "/admin/dashboard",
+                    rout: "dashboard",
                     label: "Dashboard",
                     active: pathname === "/admin/dashboard",
                     icon: LayoutGrid,
@@ -35,16 +36,19 @@ export function getMenuList(pathname, user) {
                     submenus: [
                         {
                             href: "/admin/dashboard/proyek",
+                            rout: "proyek.index",
                             label: "Proyek",
                             active: pathname === "/admin/dashboard/proyek"
                         },
                         {
                             href: "/admin/dashboard/alat-kerja",
+                            rout: "alatkerja.index",
                             label: "Alat Kerja",
                             active: pathname === "/admin/dashboard/alat-kerja"
                         },
                         {
                             href: "/admin/dashboard/tenaga-kerja",
+                            rout: "tenagakerja.index",
                             label: "Tenaga Kerja",
                             active: pathname === "/admin/dashboard/tenaga-kerja"
                         }
@@ -61,6 +65,7 @@ export function getMenuList(pathname, user) {
             menus: [
                 {
                     href: "/admin/dashboard/user-management",
+                    rout: "user-management.index",
                     label: "Tambah Admin/User",
                     active: pathname.includes("/admin/dashboard/user-management"),
                     icon: UserPlus ,

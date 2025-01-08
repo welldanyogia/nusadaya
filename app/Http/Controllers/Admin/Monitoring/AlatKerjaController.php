@@ -74,7 +74,7 @@ class AlatKerjaController extends Controller
             'tools' => $tools,
             'projects' => $projects,
             'countKeterangan' => $countKeterangan, // Kirim jumlah alat kerja berdasarkan keterangan
-        ]);
+        ])->with('refresh',true);
     }
 
 
